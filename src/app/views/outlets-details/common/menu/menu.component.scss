@@ -1,0 +1,26 @@
+.card{
+    border: none;
+    position: sticky;
+    top: 26vw !important;
+ul{
+    li{
+        border: none !important;
+    }:first-child:not(h4){
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+    }
+    li:not(._menu):hover{
+        border-left: 3px solid #750000 !important;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.5s;
+        background: #ed4134;
+        color: white;
+            
+    }
+    li:focus{
+        z-index: 1;
+        text-decoration: none;
+        background-color: #f8f9fa;
+    }
+}
+}

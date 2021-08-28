@@ -1,0 +1,27 @@
+.cart-plus-minus{
+    .plus-minus{
+        font-size: 15px;
+    }
+    input{
+        height: 25px;
+        width: 40px;
+        padding: 0;
+        text-align: center;
+    }:focus{
+        box-shadow: none;
+    }
+}
+.note{
+    border-color: transparent;
+}
+.note:hover{
+    background-color: #fae7e8;
+    border-left: 6px solid #e45460;
+}
+
+.single-news{
+    img{
+        height: 100px;
+    object-fit: cover;
+    }
+}

@@ -1,0 +1,25 @@
+.cart-plus-minus{
+    .plus-minus{
+        font-size: 15px;
+    }
+    input{
+        height: 25px;
+        width: 40px;
+        padding: 0;
+        text-align: center;
+    }:focus{
+        box-shadow: none;
+    }
+}
+
+.scroll-cart{
+    max-height: 275px;
+    overflow: auto;
+}
+mdb-card.web-cart{
+    border: none;
+    position: sticky;
+    top: 26vw;
+}
+
+

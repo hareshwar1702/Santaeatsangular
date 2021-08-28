@@ -1,0 +1,173 @@
+<!--Main Navigation-->
+<header>
+
+    <!-- Sidebar -->
+    <!-- <div class="sidebar-fixed position-fixed">
+
+        <a class="logo-wrapper waves-effect">
+            <img src="../../../../assets/img/angular-mdb.png" class="img-fluid" alt="">
+        </a>
+
+        <div class="list-group list-group-flush">
+
+            <a routerLink="dashboards/v1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard
+            </a>
+            <a routerLink="profiles/profile1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="user" class="mr-3"></mdb-icon>Profile</a>
+            <a routerLink="tables/table1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="table" class="mr-3"></mdb-icon>Tables</a>
+            <a routerLink="maps/map1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon far icon="map" class="mr-3"></mdb-icon>Maps</a>
+            <a routerLink="nonExistingPath" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="exclamation" class="mr-3"></mdb-icon>404</a>
+
+        </div>
+
+    </div> -->
+    <!-- Sidebar -->
+
+    <!--Navbar-->
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark red fixed-top scrolling-navbar" mdbStickyHeader [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="navbar-brand" href="#">Navbar</a>
+            </li>
+        </ul>
+    </mdb-navbar-brand>
+
+  
+    <!-- Collapsible content -->
+    <links>
+      <ul class="navbar-nav nav-left">
+        <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle _dropdown waves-light" mdbWavesEffect>
+                <!-- <mdb-icon fas icon="user"></mdb-icon>  -->
+                Home Delivery<span class="caret ml-3"></span>
+            </a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+            </div>
+        </li>
+        <li class="nav-item active">
+            <form class="form-inline waves-light" mdbWavesEffect>
+                <div class="md-form my-0">
+                    <input class="form-control _search mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit"
+                        mdbWavesEffect> <mdb-icon class="mr-1" fas icon="search-location" size="1x"></mdb-icon>Locate Me</button>
+                </div>
+            </form>
+        </li>
+    </ul >
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link waves-light" (click)="openLoginModal()" mdbWavesEffect>Partner with us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon> Search</a>
+        </li>
+  
+        <!-- Dropdown -->
+        <li class="nav-item">
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link waves-light" data-toggle="modal" data-target="#basicExample" (click)="signin.show()"  mdbWavesEffect>
+              <mdb-icon fas icon="user"></mdb-icon> Login</a>
+        </li>
+        
+        <!-- <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          </div>
+        </li> -->
+  
+      </ul>
+      <!-- Links -->
+    </links>
+    <!-- Collapsible content -->
+  </mdb-navbar>
+  <!--/.Navbar-->
+    <!--/.Navbar-->
+
+</header>
+<!--Main Navigation-->
+
+
+
+<!-- <div mdbModal #register="mdb-modal" class="modal fade" id="basicExample2" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: true, ignoreBackdropClick: false}">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
+        <div class="modal-content form-elegant">
+            <div class="modal-header text-center">
+                <h5 class="modal-title white-text w-100 font-weight-bold" id="myModalLabel">Sign UP for new account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="register.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                <input type="text" id="form2" class="form-control" 
+                       mdbInput>
+                <label for="form2">Name</label>
+              </div>
+              <div class="md-form mb-5">
+                <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                <input type="number" id="form2" class="form-control" 
+                       mdbInput>
+                <label for="form2">Phone No</label>
+              </div>
+              <div class="md-form mb-5">
+                <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                <input type="email" id="form2" class="form-control" 
+                       mdbInput>
+                <label for="form2">Email or Phone No</label>
+               <mdb-error
+                  *ngIf="subscriptionFormModalEmail.invalid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
+                  Input invalid
+                </mdb-error>
+                <mdb-success
+                  *ngIf="subscriptionFormModalEmail.valid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
+                  Input valid
+                </mdb-success> -->
+              <!-- </div>
+                <div class="md-form mb-5">
+                  <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+                  <input type="password" id="form3" class="form-control"
+                         mdbInput>
+                  <label for="form3">Password</label>
+                </div>
+                <div class="md-form mb-5">
+                  <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                  <input type="text" id="form2" class="form-control" 
+                         mdbInput>
+                  <label for="form2">Referral Code</label>
+                </div>
+
+                <div class="text-center">
+                  <button type="button" mdbBtn gradient="red" block="true" rounded="true" class="z-depth-1a waves-light"
+                          mdbWavesEffect>Sign Up
+                  </button>
+                </div>
+              </div>
+              <div class="modal-footer mx-5 pt-3 mb-1">
+                <p class="font-small grey-text d-flex justify-content-end">Already have an account?
+                  <a class="red-text ml-1" data-toggle="modal" data-target="#basicExample" (click)="signin.show()" mdbWavesEffect> Sign In Here</a>
+                </p>
+              </div> -->
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm waves-light" data-dismiss="modal"
+                    (click)="centralRegular.hide()" mdbWavesEffect>Close</button>
+                <button type="button" class="btn btn-primary btn-sm waves-light" mdbWavesEffect>Save changes</button>
+            </div> -->
+        <!-- </div>
+    </div>
+</div> --> 
