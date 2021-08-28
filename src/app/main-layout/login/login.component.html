@@ -1,0 +1,80 @@
+<!-- <div class="modal-header">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+  </div>
+  <div class="modal-body">
+    ...
+  </div>
+  <div class="modal-footer">
+    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Close</button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+  </div> -->
+  
+  <!-- <div mdbModal #signin="mdb-modal" class="modal fade" id="basicExample" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: true, ignoreBackdropClick: false}">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
+        <div class="modal-content form-elegant"> -->
+            <div class="modal-header text-center">
+                <h5 class="modal-title white-text w-100 font-weight-bold" id="myModalLabel">Sign In to continue</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                (click)="modalRef.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                <input type="email" id="form2" class="form-control" 
+                       mdbInput>
+                <label for="form2">Email or Phone No</label>
+                <!-- <mdb-error
+                  *ngIf="subscriptionFormModalEmail.invalid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
+                  Input invalid
+                </mdb-error>
+                <mdb-success
+                  *ngIf="subscriptionFormModalEmail.valid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
+                  Input valid
+                </mdb-success> -->
+              </div>
+                <div class="md-form mb-5">
+                  <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+                  <input type="password" id="form3" class="form-control"
+                         mdbInput>
+                  <label for="form3">Password</label>
+                  <!-- <mdb-error
+                    *ngIf="subscriptionFormModalName.invalid && (subscriptionFormModalName.dirty || subscriptionFormModalName.touched)">
+                    Input invalid
+                  </mdb-error> -->
+                  <!-- <mdb-success
+                    *ngIf="subscriptionFormModalName.valid && (subscriptionFormModalName.dirty || subscriptionFormModalName.touched)">
+                    Input valid
+                  </mdb-success> -->
+                </div>
+        
+
+                <p class="font-small red-text d-flex justify-content-end">Forgot
+                  <a href="#" class="red-text ml-1"> Password?</a>
+                </p>
+                <div class="text-center">
+                  <button type="button" mdbBtn gradient="red" block="true" rounded="true" class="z-depth-1a waves-light"
+                          mdbWavesEffect>Sign in
+                  </button>
+                </div>
+              </div>
+
+              <p class="dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">or<a href="#" class="blue-text ml-1">Continue as Guest </a></p>
+              <div class="modal-footer mx-5 pt-3 mb-1">
+                <p class="font-small grey-text d-flex justify-content-end">Not Signed Up?
+                  <a data-dismiss="modal" class="red-text ml-1" data-toggle="modal" data-target="#basicExample" (click)="register.show()" mdbWavesEffect>Sign Up Here</a>
+                </p>
+              </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm waves-light" data-dismiss="modal"
+                    (click)="centralRegular.hide()" mdbWavesEffect>Close</button>
+                <button type="button" class="btn btn-primary btn-sm waves-light" mdbWavesEffect>Save changes</button>
+            </div> -->
+        <!-- </div>
+    </div>
+</div> -->
