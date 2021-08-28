@@ -1,0 +1,21 @@
+.cart-plus-minus{
+    .plus-minus{
+        font-size: 15px;
+    }
+    input{
+        height: 25px;
+        width: 40px;
+        padding: 0;
+        text-align: center;
+    }:focus{
+        box-shadow: none;
+    }
+}
+
+.scroll-cart{
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+
