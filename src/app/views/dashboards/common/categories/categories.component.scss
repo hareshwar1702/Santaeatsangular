@@ -57,9 +57,9 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
 .card .card_inner {
     position: relative;
     padding: 9px 10px;
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
-    display: -webkit-flex;
+    /* display: -webkit-flex; */
     height: 100%;
 }
 .card .card_inner .card_image {
@@ -71,14 +71,14 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
     position: relative;
     margin: auto;
     height: 112px;
-    min-width: 112px;
-    max-width: 112px;
+    // min-width: 112px;
+    // max-width: 112px;
     border-radius: 6px;
 }
 .card .card_inner .card_image img.card_image_view {
     height: 112px;
-    min-width: 112px;
-    max-width: 112px;
+    min-width: 100%;
+    max-width: 100%;
     -o-object-fit: cover;
     object-fit: cover;
     border-radius: 6px;
@@ -87,7 +87,7 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
     flex-grow: 1;
     flex: 70%;
     overflow: hidden;
-    margin: 0 8px;
+    margin: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -284,3 +284,40 @@ hr {
     border-left: inset;
     padding: 5px 0px;
 }
+
+    .card_hover{
+        transition: all .2s linear;
+    }
+    .card_hover:hover{
+        box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
+        -webkit-transform: translate3d(0,-2px,0);
+        transform: translate3d(0,-2px,0);
+        cursor: pointer;
+    }
+
+
+    .categories{
+        li{
+            border: none;
+            padding: 10px 20px;
+            background: none;
+            ._img{
+                border-radius: 11em;
+                img{
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 11em;
+                    transition: all 0.2s linear;
+                }:hover{
+                    box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
+                    transform: translate3d(0, -2px, 0);
+                    cursor: pointer;
+                }
+            }
+        a{
+            color: #000000;
+            font-weight: 500;
+            font-size: 88%;
+        }
+    }
+    }

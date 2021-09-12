@@ -1,18 +1,28 @@
 <section class="pb-3 text-center ">
-    <div class="container">
-        <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
-            [animation]="'fade'">
-            <mdb-carousel-item *ngFor="let item of slides; let i = index" style="width: 100%;overflow:auto;">
-                <!-- <div class="col-4 col-sm-3 col-md-2 col-lg-1 pb-2" *ngFor="let card of item; let cardIndex = index"> -->
-                <div class="category-carousel" *ngFor="let card of item; let cardIndex = index">
-                    <mdb-card class="my-1">
-                        <mdb-card-img clss="cat-img zoom" [src]="card.img" alt="Card image cap"></mdb-card-img>
-                    </mdb-card>
+    <div class="container mt-5">
+        <!-- <ul class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
+            [animation]="'fade'" *ngFor="let item of slides; let i = index" style="width: 100%;overflow:auto;">
+            <li *ngFor="let card of item; let cardIndex = index">
+        
+                <div>
+                    <div class="my-1">
+                        <img clss="cat-img zoom" [src]="card.img" alt="Card image cap"/>
+                    </div>
                     <a href="#" color="primary" class="waves-light" mdbWavesEffect>{{card.title}}</a>
                 </div>
 
-            </mdb-carousel-item>
-        </mdb-carousel>
+            </li>
+        </ul> -->
+        <div class="categories">
+            <ul class="list-group list-group-horizontal" *ngFor="let item of slides; let i = index" style="width: 100%;overflow:auto;">
+                <li class="list-group-item" *ngFor="let card of item; let cardIndex = index">
+                    <div class="my-1 _img">
+                        <img clss="cat-img zoom" [src]="card.img" alt="Card image cap"/>
+                    </div>
+                    <a href="#" color="primary" class="waves-light" mdbWavesEffect>{{card.title}}</a>
+                </li>
+            </ul>
+        </div>
     <!-- Section heading -->
     <div class="clearfix">
         <span class="h6-responsive font-weight-bold text-center my-5 float-left">All</span>
@@ -22,8 +32,9 @@
     <div class="row">
 
         <div class="container p-0 d-flex flex-wrap">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0">
-                <div class="card">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0"
+               *ngFor="let restro of restorantList;" >
+                <div class="card card_hover">
                     <div class="card_inner">
                         <restaurant-tags class="ng-tns-c21-2 ng-star-inserted"
                             style="--closed_tag_top:15px; --closed_tag_bg_color:#d63230; --closed_tag_font_color:white; --preorder_tag_top:45px; --preorder_tag_bg_color:#ba68c8; --preorder_tag_font_color:#ffffff; --sponsored_tag_bottom:2px; --sponsored_tag_bg_color:#ffc058; --sponsored_tag_font_color:white;">
@@ -35,7 +46,7 @@
                         <div class="card_right ng-tns-c21-2 ng-star-inserted">
                             <div class="top-div position-relative">
                                 <p class="card_heading marginBZero" style="color: rgb(239, 7, 30);">
-                                    Shad Indian
+                                    {{restro.restaurant_name}}
                                 </p>
                                 <p class="card_distance marginBottomStore ng-tns-c21-2 ng-star-inserted">• Rice &amp; Curry •
                                     Biryani • Vegetables</p>
@@ -69,9 +80,9 @@
                     <mdb-badge class="_badge_preorder darken-2" color="purple">Preorder</mdb-badge>    
                 </div>
             </div>
- <!-- 2 -->
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0">
-                <div class="card">
+
+            <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0">
+                <div class="card card_hover">
                     <div class="card_inner">
                         <restaurant-tags class="ng-tns-c21-2 ng-star-inserted"
                             style="--closed_tag_top:15px; --closed_tag_bg_color:#d63230; --closed_tag_font_color:white; --preorder_tag_top:45px; --preorder_tag_bg_color:#ba68c8; --preorder_tag_font_color:#ffffff; --sponsored_tag_bottom:2px; --sponsored_tag_bg_color:#ffc058; --sponsored_tag_font_color:white;">
@@ -115,9 +126,9 @@
                     </div>
                 </div>
             </div>
-<!-- 2 -->
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0">
-                <div class="card">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0">
+                <div class="card card_hover">
                     <div class="card_inner">
                         <restaurant-tags class="ng-tns-c21-2 ng-star-inserted"
                             style="--closed_tag_top:15px; --closed_tag_bg_color:#d63230; --closed_tag_font_color:white; --preorder_tag_top:45px; --preorder_tag_bg_color:#ba68c8; --preorder_tag_font_color:#ffffff; --sponsored_tag_bottom:2px; --sponsored_tag_bg_color:#ffc058; --sponsored_tag_font_color:white;">
@@ -161,6 +172,52 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0">
+                <div class="card card_hover">
+                    <div class="card_inner">
+                        <restaurant-tags class="ng-tns-c21-2 ng-star-inserted"
+                            style="--closed_tag_top:15px; --closed_tag_bg_color:#d63230; --closed_tag_font_color:white; --preorder_tag_top:45px; --preorder_tag_bg_color:#ba68c8; --preorder_tag_font_color:#ffffff; --sponsored_tag_bottom:2px; --sponsored_tag_bg_color:#ffc058; --sponsored_tag_font_color:white;">
+                        </restaurant-tags>
+                        <div class="card_image z-depth-1" mdbWavesEffect>
+                            <img class="card_image_view"
+                                src="https://d2sz1kgdtrlf1n.cloudfront.net/yelo_products/thumb-250-250-16ijpt9vQwiPcE1623418691829-indianfood1024.jpg">
+                        </div>
+                        <div class="card_right ng-tns-c21-2 ng-star-inserted">
+                            <div class="top-div position-relative">
+                                <p class="card_heading marginBZero" style="color: rgb(239, 7, 30);">
+                                    Shad Indian
+                                </p>
+                                <p class="card_distance marginBottomStore ng-tns-c21-2 ng-star-inserted">• Rice &amp; Curry •
+                                    Biryani • Vegetables</p>
+                            </div>
+                            <div class="ng-tns-c21-2 ng-star-inserted">
+                                <hr class="d-line">
+                            </div>
+                            <div class="bottom">
+                                <div class="bottom-div">
+                                    <mdb-badge class="_badge" color="black">33 Min</mdb-badge>
+                                    <p class="card_address marginBottomStore mg-st ng-tns-c21-2 ng-star-inserted"
+                                        style="font-size: 11px">2.68 MI</p>
+                                </div>
+                                <div class="bottom-div">
+                                </div>
+                                <div class="bottom-div">
+                                    <div _ngcontent-serverapp-c21="" aria-hidden="false" class="store_rating ng-tns-c21-2 ng-star-inserted">
+                                    </div>
+                                    <div class="card_address d-flex-center">
+                                        <span class="dot ng-tns-c21-2 ng-star-inserted"
+                                            style="margin: 0px 8px 0px 0px;"></span>
+                                        <p  class="ng-tns-c21-2 ng-star-inserted">
+                                                min £15.00
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </div> -->
         </div>
     </div>
     </div>

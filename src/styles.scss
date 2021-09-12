@@ -334,3 +334,23 @@ app-categories{
     }
   }
  }
+
+
+ @media (min-width: 1201px){
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+      max-width: 1300px;
+  }
+ }
+
+ ._filter{
+   position:absolute;
+   transition: all 200ms ease-in 0s;
+   transform: translateY(0%);
+   transition: background .5s ease-in-out,padding .5s ease-in-out;
+ }
+
+ .top-nav-collapse{
+  ._filter{
+    transform: translateY(-100%);
+  }
+ }
