@@ -41,24 +41,23 @@
                         </restaurant-tags>
                         <div class="card_image z-depth-1" mdbWavesEffect routerLink="../outlets-details/outlets">
                             <img class="card_image_view"
-                                src="https://d2sz1kgdtrlf1n.cloudfront.net/yelo_products/thumb-250-250-16ijpt9vQwiPcE1623418691829-indianfood1024.jpg">
+                            [src]="restro.restaurant_logo">
                         </div>
                         <div class="card_right ng-tns-c21-2 ng-star-inserted">
                             <div class="top-div position-relative">
                                 <p class="card_heading marginBZero" style="color: rgb(239, 7, 30);">
                                     {{restro.restaurant_name}}
                                 </p>
-                                <p class="card_distance marginBottomStore ng-tns-c21-2 ng-star-inserted">• Rice &amp; Curry •
-                                    Biryani • Vegetables</p>
+                                <p class="card_distance marginBottomStore ng-tns-c21-2 ng-star-inserted">• {{restro.restaurant_foodtype}}</p>
                             </div>
                             <div class="ng-tns-c21-2 ng-star-inserted">
                                 <hr class="d-line">
                             </div>
                             <div class="bottom">
                                 <div class="bottom-div">
-                                    <mdb-badge class="_badge" color="black">33 Min</mdb-badge>
+                                    <mdb-badge class="_badge" color="black">{{restro.restauran_delivery_min_time}} Min</mdb-badge>
                                     <p class="card_address marginBottomStore mg-st ng-tns-c21-2 ng-star-inserted"
-                                        style="font-size: 11px">2.68 MI</p>
+                                        style="font-size: 11px">{{restro.sgst}} MI</p>
                                 </div>
                                 <div class="bottom-div">
                                 </div>
@@ -69,7 +68,7 @@
                                         <span class="dot ng-tns-c21-2 ng-star-inserted"
                                             style="margin: 0px 8px 0px 0px;"></span>
                                         <p  class="ng-tns-c21-2 ng-star-inserted">
-                                                min £15.00
+                                                {{restro.resto_offer}}
                                         </p>
                                     </div>
                                 </div>

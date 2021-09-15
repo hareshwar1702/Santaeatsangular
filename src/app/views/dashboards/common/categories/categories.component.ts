@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RestaurantService } from '../../../../service/restaurant.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CategoriesComponent implements OnInit {
   public restorantList: any = [];
-  constructor(private http: HttpClient) { }
+  constructor(private restaurantService: RestaurantService) { }
   cards = [
     {
       title: 'Deals',
@@ -85,21 +85,7 @@ export class CategoriesComponent implements OnInit {
   }
   getRestorantList() {
 
-    console.log('getRestorantList');
-
-    const url = "https://santaeatsapi.edigito.in/get_restaurant_list";
-
-    // const headers = new Headers();
-    const headers = new HttpHeaders();
-    headers.set('Content-Type', 'application/json; charset=utf-8');
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    // headers.append('Access-Control-Allow-Methods', 'GET');
-    headers.append('Access-Control-Allow-Origin', '*');
-
-    const requestOptions = { headers: headers };
-
-
-    this.http.get(url, requestOptions)
+    this.restaurantService.getRestaurantList()
       .subscribe(
         (response) => {                           //Next callback
           console.log('response received')
