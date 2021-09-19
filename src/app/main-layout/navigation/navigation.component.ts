@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { MDBModalRef,MDBModalService } from 'angular-bootstrap-md';
 import { LoginComponent } from '../login/login.component';
+import { RestaurantService } from '../../service/restaurant.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -12,7 +13,10 @@ export class NavigationComponent implements OnInit {
   validatingForm: FormGroup;
   clicked: boolean;
   modalRef: MDBModalRef;
-  constructor(private modalService: MDBModalService) {
+  locationName:string;
+  latitude:number;
+  longitude:number;
+  constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
@@ -50,4 +54,18 @@ export class NavigationComponent implements OnInit {
 
       });
   }
+
+  getLocation() {
+    if (navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(function(pos) {
+       console.log("Latitude: " + pos.coords.latitude +
+          "Longitude: " + pos.coords.longitude);
+        
+      })
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+ 
 }

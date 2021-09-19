@@ -1,28 +1,39 @@
 <div class="modal-header text-center">
     <h5 class="modal-title white-text w-100 font-weight-bold" id="myModalLabel">Sign UP for new account</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-        (click)="modalRef.hide()">
+        (click)="closeLoginModal()">
         <span aria-hidden="true">×</span>
     </button>
 </div>
 <div class="modal-body mx-3">
-  <div class="md-form mb-5">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="md-form mb-1">
     <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-    <input type="text" id="form2" class="form-control" 
-           mdbInput>
+    <input type="text" id="form1" formControlName="fname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
+    mdbInput>
+    <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
+    <div *ngIf="f.fname.errors.required">Name is required</div>
+    </div>
     <label for="form2">Name</label>
   </div>
-  <div class="md-form mb-5">
+  <div class="md-form mb-1">
     <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-    <input type="number" id="form2" class="form-control" 
-           mdbInput>
+    <input type="number" id="form2" formControlName="mobileno" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileno.errors }"
+    mdbInput>
+    <div *ngIf="submitted && f.mobileno.errors" class="invalid-feedback">
+    <div *ngIf="f.mobileno.errors.required">Phone No is required</div>
+    </div>
     <label for="form2">Phone No</label>
   </div>
-  <div class="md-form mb-5">
+  <div class="md-form mb-1">
     <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-    <input type="email" id="form2" class="form-control" 
-           mdbInput>
-    <label for="form2">Email or Phone No</label>
+    <input type="email" id="form3" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+    mdbInput>
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+    <div  *ngIf="f.email.errors.required">Email is required</div>
+    <div  *ngIf="f.email.errors.email">Please enter valid Email</div>
+    </div>
+    <label for="form2">Email</label>
     <!-- <mdb-error
       *ngIf="subscriptionFormModalEmail.invalid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
       Input invalid
@@ -32,24 +43,31 @@
       Input valid
     </mdb-success> -->
   </div>
-    <div class="md-form mb-5">
+    <div class="md-form mb-1">
       <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
-      <input type="password" id="form3" class="form-control"
-             mdbInput>
+      <input type="password" id="form4" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      mdbInput>
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">password is required</div>
+      </div>     
       <label for="form3">Password</label>
     </div>
-    <div class="md-form mb-5">
+    <div class="md-form mb-1">
       <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-      <input type="text" id="form2" class="form-control" 
-             mdbInput>
+      <input type="text" id="form5" formControlName="reffralcode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.reffralcode.errors }"
+      mdbInput>
+      <div *ngIf="submitted && f.reffralcode.errors" class="invalid-feedback">
+        <div *ngIf="f.reffralcode.errors.required">Referral Code is required</div>
+      </div>
       <label for="form2">Referral Code</label>
     </div>
 
     <div class="text-center">
-      <button type="button" mdbBtn gradient="red" block="true" rounded="true" class="z-depth-1a waves-light"
+      <button type="button" mdbBtn gradient="red"  type="submit" block="true" rounded="true" class="z-depth-1a waves-light"
               mdbWavesEffect>Sign Up
       </button>
     </div>
+   </form>
   </div>
   <div class="modal-footer mx-5 pt-3 mb-1">
     <p class="font-small grey-text d-flex justify-content-end">Already have an account?

@@ -44,7 +44,9 @@ body {
 .sidebar-fixed .logo-wrapper img {
   max-height: 50px
 }
-
+.pac-container{
+  z-index: 9999999;
+}
 @media (min-width: 1200px) {
   // .navbar, .page-footer, main {
   //   padding-left: 270px

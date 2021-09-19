@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../../../../service/restaurant.service';
+import {CommonService} from '../../../../service/common.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -7,69 +8,8 @@ import { RestaurantService } from '../../../../service/restaurant.service';
 })
 export class CategoriesComponent implements OnInit {
   public restorantList: any = [];
-  constructor(private restaurantService: RestaurantService) { }
-  cards = [
-    {
-      title: 'Deals',
-      description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-      buttonText: 'Button',
-      img: 'assets/img/categories/deals.jpeg'
-    },
-    {
-      title: 'Grocery',
-      description: 'This card has supporting text below as a natural lead-in to additional content.',
-      buttonText: 'Button',
-      img: 'assets/img/categories/grocery.jpeg'
-    },
-    { 
-      title: 'Conveniences',
-      description: 'This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action. This text is much longer so that you can see a significant difference between the text in  previous tabs.',
-      buttonText: 'Button',
-      img: 'assets/img/categories/conveniences.jpeg'
-    },
-    {
-      title: 'Alcohol',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'assets/img/categories/alcohol.jpeg'
-    },
-    {
-      title: 'Bakery',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'assets/img/categories/bakery.jpeg'
-    },
-    {
-      title: 'Halal',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'assets/img/categories/halal.jpeg'
-    }
-    ,    {
-      title: 'Fast Food ',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'assets/img/categories/fastfood.jpeg'
-    },
-    {
-      title: 'Healthy',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'assets/img/categories/healthy.jpeg'
-    },
-    {
-      title: 'Burgers',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'assets/img/categories/burgers.jpeg'
-    },
-    {
-      title: 'Sandwich',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'assets/img/categories/sandwich.jpeg'
-    }
-  ];
+  constructor(private restaurantService: RestaurantService,private commonservice:CommonService) { }
+  cards:any;
   slides: any = [[]];
   chunk(arr: any, chunkSize:any) {
     let R = [];
@@ -80,8 +20,28 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.slides = this.chunk(this.cards, 12);
     this.getRestorantList();
+    this.getCategories();
+  }
+  getCategories(){
+    this.restaurantService.getCategories()
+      .subscribe(
+        (response) => {                           //Next callback
+          console.log('response received')
+          console.log(JSON.stringify(response));
+
+          const res: any = response;
+
+          this.cards = res.data;
+          this.slides = this.chunk(this.cards, 12);
+        },
+        (error) => {                              //Error callback
+          console.error('Request failed with error')
+          alert(error);
+        },
+        () => {                                   //Complete callback
+          console.log('Request completed')
+        })
   }
   getRestorantList() {
 
@@ -103,6 +63,10 @@ export class CategoriesComponent implements OnInit {
           console.log('Request completed')
         })
 
+  }
+  sendRestarunt(data:any){
+    console.log(data);
+    this.commonservice.restaurantObj = data;
   }
 
 }

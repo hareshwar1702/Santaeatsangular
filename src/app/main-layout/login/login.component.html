@@ -19,15 +19,19 @@
             <div class="modal-header text-center">
                 <h5 class="modal-title white-text w-100 font-weight-bold" id="myModalLabel">Sign In to continue</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                (click)="modalRef.hide()">
+                (click)="closeLoginModal()">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body mx-3">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="md-form mb-5">
                 <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-                <input type="email" id="form2" class="form-control" 
+                <input type="email" id="form2" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
                        mdbInput>
+                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Email or Phone No is required</div>
+                  </div>
                 <label for="form2">Email or Phone No</label>
                 <!-- <mdb-error
                   *ngIf="subscriptionFormModalEmail.invalid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
@@ -40,8 +44,11 @@
               </div>
                 <div class="md-form mb-5">
                   <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
-                  <input type="password" id="form3" class="form-control"
+                  <input type="password" id="form3"  formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                          mdbInput>
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Email or Phone No is required</div>
+                      </div>
                   <label for="form3">Password</label>
                   <!-- <mdb-error
                     *ngIf="subscriptionFormModalName.invalid && (subscriptionFormModalName.dirty || subscriptionFormModalName.touched)">
@@ -58,10 +65,11 @@
                   <a href="#" class="red-text ml-1"> Password?</a>
                 </p>
                 <div class="text-center">
-                  <button type="button" mdbBtn gradient="red" block="true" rounded="true" class="z-depth-1a waves-light"
+                  <button type="button" mdbBtn gradient="red" block="true" rounded="true" type="submit" class="z-depth-1a waves-light"
                           mdbWavesEffect>Sign in
                   </button>
                 </div>
+              </form>
               </div>
 
               <p class="dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">or<a href="#" class="blue-text ml-1">Continue as Guest </a></p>

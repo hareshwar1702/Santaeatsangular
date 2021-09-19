@@ -9,102 +9,32 @@
         </mdb-card-header>
       <!--Card content-->
       <mdb-card-body class="p-3 scroll-cart">
-        <dl class="row d-flex justify-content-between">
+        <div *ngFor="let products of productlist;let cardIndex = index">
+        <dl class="row d-flex justify-content-between borderbottom"  *ngIf="products.count > 0">
             <dd class="col-sm-8">
-                Vegetable Dansak vfddfdfg
+                {{products.name}}
             </dd>
             <dd class="col-sm-4">
-                $ 2000
+                $ {{products.price}}
             </dd>
             <dd class="col-sm-6 d-flex justify-content-between cart-plus-minus">
                 <a>
                     <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="minus"></mdb-icon>
+                        <mdb-icon fas icon="minus" (click)="changeCount('minus',cardIndex)"></mdb-icon>
                     </span>
                 </a>
-                <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" />
+                <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" [(ngModel)]="products.count" />
                 <a>
                     <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="plus"></mdb-icon>
+                        <mdb-icon fas icon="plus" (click)="changeCount('plus',cardIndex)"></mdb-icon>
                     </span>
                 </a>
             </dd>
         </dl>
-
-        <hr />
-
-        <dl class="row">
-          <dd class="col-sm-8">
-            Tandoori Mixed Grill
-          </dd>
-          <dd class="col-sm-4">
-            $ 2000
-          </dd>
-          <dd class="col-sm-6 d-flex justify-content-between cart-plus-minus">
-            <a>
-                <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                    <mdb-icon fas icon="minus"></mdb-icon>
-                </span>
-            </a>
-            <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" />
-            <a>
-                <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                    <mdb-icon fas icon="plus"></mdb-icon>
-                </span>
-            </a>
-        </dd>
-        </dl>
-
-        <hr />
-
-        <dl class="row">
-          <dd class="col-sm-8">
-            Tandoori King Prawn
-          </dd>
-          <dd class="col-sm-4">
-            $ 2000
-          </dd>
-          <dd class="col-sm-6 d-flex justify-content-between cart-plus-minus">
-            <a>
-                <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                    <mdb-icon fas icon="minus"></mdb-icon>
-                </span>
-            </a>
-            <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" />
-            <a>
-                <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                    <mdb-icon fas icon="plus"></mdb-icon>
-                </span>
-            </a>
-        </dd>
-        </dl>
-
-        <hr />
-
-        <dl class="row" routerLink="checkout/checkout-details">
-          <dd class="col-sm-8">
-            Tandoori King Prawn
-          </dd>
-          <dd class="col-sm-4">
-            $ 2000
-          </dd>
-          <dd class="col-sm-6 d-flex justify-content-between cart-plus-minus">
-            <a>
-                <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                    <mdb-icon fas icon="minus"></mdb-icon>
-                </span>
-            </a>
-            <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" />
-            <a>
-                <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                    <mdb-icon fas icon="plus"></mdb-icon>
-                </span>
-            </a>
-        </dd>
-        </dl>
+        </div>
       </mdb-card-body>
       <button class="clearfix px-3" mdbBtn type="button" color="black" block="true" mdbWavesEffect>
-        <span class="float-left">Subtotal</span>  <span class="float-right">£ 90.85</span>
+        <span class="float-left">Subtotal</span>  <span class="float-right">£ {{totalprice}}</span>
     </button>
     <button class="clearfix px-3" mdbBtn type="button" color="red" block="true" mdbWavesEffect style="background-color: #ed4134!important;" >
         Checkout
