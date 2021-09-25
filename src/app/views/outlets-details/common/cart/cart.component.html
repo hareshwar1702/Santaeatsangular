@@ -19,14 +19,14 @@
             </dd>
             <dd class="col-sm-6 d-flex justify-content-between cart-plus-minus">
                 <a>
-                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="minus" (click)="changeCount('minus',cardIndex)"></mdb-icon>
+                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus"  (click)="changeCount('minus',cardIndex)">
+                        <mdb-icon fas icon="minus"></mdb-icon>
                     </span>
                 </a>
                 <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" [(ngModel)]="products.count" />
                 <a>
-                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="plus" (click)="changeCount('plus',cardIndex)"></mdb-icon>
+                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus" (click)="changeCount('plus',cardIndex)">
+                        <mdb-icon fas icon="plus" ></mdb-icon>
                     </span>
                 </a>
             </dd>

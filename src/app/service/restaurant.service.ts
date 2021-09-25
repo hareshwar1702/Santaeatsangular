@@ -17,5 +17,8 @@ export class RestaurantService {
   getCategories(){
     return this.http.get('https://santaeatsapi.edigito.in/categories');
   }
+  getaddress(data:any){
+    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + data[0] + ',' + data[1] + '&key=AIzaSyCEUpMCzyUSq20aQbmtH90UvrQZUvGyQkg');
+  }
 
 }

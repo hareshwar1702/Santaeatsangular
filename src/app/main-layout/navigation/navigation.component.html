@@ -57,8 +57,8 @@
         <li class="nav-item active">
             <form class="form-inline waves-light" mdbWavesEffect>
                 <div class="md-form my-0">
-                    <input class="form-control _search mr-sm-2" type="text" placeholder="Search" id="search_input" aria-label="Search">
-                    <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit"  (click)="getLocation()"
+                    <input class="form-control _search mr-sm-2" type="text" placeholder="Search" id="search_input" [(ngModel)]="locationName"  [ngModelOptions]="{standalone: true}" aria-label="Search">
+                    <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit"  (click)="getmyAddress()"
                         mdbWavesEffect> <mdb-icon class="mr-1" fas icon="search-location" size="1x"></mdb-icon>Locate Me</button>
                 </div>
             </form>

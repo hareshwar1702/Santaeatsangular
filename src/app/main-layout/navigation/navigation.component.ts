@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
   validatingForm: FormGroup;
   clicked: boolean;
   modalRef: MDBModalRef;
-  locationName:string;
+  locationName:string = '';
   latitude:number;
   longitude:number;
   constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService) {
@@ -54,18 +54,62 @@ export class NavigationComponent implements OnInit {
 
       });
   }
+  getmyAddress(){
+    this.getLocation().then((res)=>{
+      this.restaurantservice.getaddress(res).subscribe((data:any) =>{
+       for(var i=0;i< data.results.length;i++){
+        if(data.results[i].geometry.location.lat == res[0] && data.results[i].geometry.location.lng == res[1]){
+          this.locationName = data.results[i].formatted_address;
+        }
+       }
+      });
+    //   return new Promise(function (resolve, reject) {
+    //     var request = new XMLHttpRequest();
 
-  getLocation() {
-    if (navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(function(pos) {
-       console.log("Latitude: " + pos.coords.latitude +
-          "Longitude: " + pos.coords.longitude);
-        
-      })
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
+    //     var method = 'GET';
+    //     var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + res[0] + ',' + res[1] + '&sensor=true';
+    //     var async = true;
+
+    //     request.open(method, url, async);
+    //     request.onreadystatechange = function () {
+    //         if (request.readyState == 4) {
+    //             if (request.status == 200) {
+    //                 var data = JSON.parse(request.responseText);
+    //                 var address = data.results[0];
+    //                 resolve(address);
+    //             }
+    //             else {
+    //                 reject(request.status);
+    //             }
+    //         }
+    //     };
+    //     request.send();
+    // });
+    })
+  }
+  getLocation(): Promise<string[]> {
+        return new Promise<string[]>((resolve, reject) => {
+        if (navigator.geolocation){
+        //   navigator.geolocation.getCurrentPosition(function(pos) {
+        //    console.log("Latitude: " + pos.coords.latitude +
+        //       "Longitude: " + pos.coords.longitude);
+        //     sessionStorage.setItem('Latitude',pos.coords.latitude.toString());
+        //     sessionStorage.setItem('Longitude',pos.coords.longitude.toString());
+        //     resolve([ coords[0].toString(), coords[1].toString() ]);
+        //   })
+      
+          navigator.geolocation.getCurrentPosition(pos => {
+            resolve([pos.coords.latitude.toString().toString(), pos.coords.longitude.toString() ]);
+          });
+    
+        } else {
+          console.log("Geolocation is not supported by this browser.");
+          reject(false);
+        }
+      });
+
   }
 
+  
  
 }
