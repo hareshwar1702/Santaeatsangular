@@ -8,7 +8,12 @@ import {CommonService} from '../../../../service/common.service';
 })
 export class CategoriesComponent implements OnInit {
   public restorantList: any = [];
-  constructor(private restaurantService: RestaurantService,private commonservice:CommonService) { }
+  constructor(private restaurantService: RestaurantService,private commonservice:CommonService) {
+    this.commonservice.latlogtrigger.subscribe((data) => {
+      console.log(data);
+      this.getRestorantList(data);
+    })
+   }
   cards:any;
   slides: any = [[]];
   chunk(arr: any, chunkSize:any) {
@@ -20,7 +25,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getRestorantList();
+    this.getRestorantList(null);
     this.getCategories();
   }
   getCategories(){
@@ -43,9 +48,8 @@ export class CategoriesComponent implements OnInit {
           console.log('Request completed')
         })
   }
-  getRestorantList() {
-
-    this.restaurantService.getRestaurantList()
+  getRestorantList(data:any) {
+    this.restaurantService.getRestaurantList(data)
       .subscribe(
         (response) => {                           //Next callback
           console.log('response received')

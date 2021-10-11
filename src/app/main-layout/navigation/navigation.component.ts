@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { MDBModalRef,MDBModalService } from 'angular-bootstrap-md';
 import { LoginComponent } from '../login/login.component';
 import { RestaurantService } from '../../service/restaurant.service';
+import { CommonService } from '../../service/common.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -16,7 +17,8 @@ export class NavigationComponent implements OnInit {
   locationName:string = '';
   latitude:number;
   longitude:number;
-  constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService) {
+  constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService,
+       public commonService : CommonService) {
     this.clicked = this.clicked === undefined ? false : true;
   }
 
@@ -53,6 +55,10 @@ export class NavigationComponent implements OnInit {
         animated: true
 
       });
+  }
+
+  getlatlong(){
+    console.log("hello");
   }
   getmyAddress(){
     this.getLocation().then((res)=>{
@@ -97,9 +103,10 @@ export class NavigationComponent implements OnInit {
         //     sessionStorage.setItem('Longitude',pos.coords.longitude.toString());
         //     resolve([ coords[0].toString(), coords[1].toString() ]);
         //   })
-      
+
           navigator.geolocation.getCurrentPosition(pos => {
-            resolve([pos.coords.latitude.toString().toString(), pos.coords.longitude.toString() ]);
+            this.commonService.latlogtrigerchange(pos.coords.latitude, pos.coords.longitude);
+            resolve([pos.coords.latitude.toString(), pos.coords.longitude.toString() ]);
           });
     
         } else {

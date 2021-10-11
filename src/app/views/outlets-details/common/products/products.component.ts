@@ -7,11 +7,18 @@ import {CommonService} from '../../../../service/common.service';
 })
 export class ProductsComponent implements OnInit {
   productsList:any;
+  menuid = '';
   constructor(private commonservice:CommonService) {
-     this.productsList = this.commonservice.productsList;
+    //  this.productsList = this.commonservice.productsList;
      this.commonservice.productcount.subscribe(() => {
       this.productsList = this.commonservice.productsList; 
     });
+    this.commonservice.menuclick.subscribe((data)=>{
+      console.log(data)
+      this.menuid = data.menu_categoryid;
+      this.productsList= null;
+      this.productsList = this.commonservice.categories;
+    })
    }
 
   ngOnInit(): void {
