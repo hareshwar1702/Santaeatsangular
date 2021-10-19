@@ -9,10 +9,15 @@
 
       <!-- Grid column -->
       <div class="col-md-3 col-4 p-0-8" *ngIf="products.id == menuid">
-
         <!--Image-->
-        <div class="view overlay rounded z-depth-1">
+        <div class="view overlay rounded z-depth-1" *ngIf="products.category_img != ''">
           <img class="img-fluid" [src]="products.category_img" alt="Sample image">
+          <a>
+            <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+          </a>
+        </div>
+        <div class="view overlay rounded z-depth-1" *ngIf="products.category_img == ''">
+          <img class="img-fluid" src="https://santaeatsadmin.edigito.in/uploads/restaurant/20210913-0844PR_IMAGE_FINAL.jpg" alt="Sample image">
           <a>
             <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
           </a>
@@ -23,7 +28,6 @@
 
       <!-- Grid column -->
       <div class="col-md-9 col-8" *ngIf="products.id == menuid">
-
         <!-- Excerpt -->
         <div class="font-weight-bold d-flex dark-grey-text cart-plus-minus">
             <div class="col-lg-11 col-10 text-truncate pl-0 mb-2">

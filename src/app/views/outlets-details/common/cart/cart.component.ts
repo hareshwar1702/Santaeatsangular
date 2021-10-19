@@ -7,7 +7,7 @@ import {CommonService} from '../../../../service/common.service';
 })
 export class CartComponent implements OnInit {
   productlist:any;
-  totalprice:any;
+  totalprice:any = 50;
   constructor(private commonservice:CommonService) {
     this.productlist = this.commonservice.productsList;
     this.commonservice.productcount.subscribe(() => {

@@ -12,7 +12,7 @@
         <div *ngFor="let products of productlist;let cardIndex = index">
         <dl class="row d-flex justify-content-between borderbottom"  *ngIf="products.count > 0">
             <dd class="col-sm-8">
-                {{products.name}}
+                {{products.category_name}}
             </dd>
             <dd class="col-sm-4">
                 $ {{products.price}}

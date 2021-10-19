@@ -18,6 +18,11 @@ export class ProductsComponent implements OnInit {
       this.menuid = data.menu_categoryid;
       this.productsList= null;
       this.productsList = this.commonservice.categories;
+      for(var i=0;i<=this.productsList.length-1;i++){
+        this.productsList[i]['count'] = 0;
+        this.productsList[i]['price'] = 1;
+      }
+      this.commonservice.productsList = this.productsList;
     })
    }
 
