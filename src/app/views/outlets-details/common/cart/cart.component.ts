@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {CommonService} from '../../../../service/common.service';
 @Component({
   selector: 'app-cart',
@@ -8,7 +9,7 @@ import {CommonService} from '../../../../service/common.service';
 export class CartComponent implements OnInit {
   productlist:any;
   totalprice:any = 0;
-  constructor(private commonservice:CommonService) {
+  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,) {
     this.productlist = this.commonservice.productsList;
     this.commonservice.productcount.subscribe(() => {
       this.totalprice = 0;
@@ -28,7 +29,7 @@ export class CartComponent implements OnInit {
 
   checkOut(){
     if(this.totalprice != 0){
-      
+      this.zone.run(() => {this.router.navigate(['/outlets-details']); });
     alert("Success!");
     } else {
       alert("fail!");
