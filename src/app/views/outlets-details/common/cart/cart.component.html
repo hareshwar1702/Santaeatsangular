@@ -36,7 +36,7 @@
       <button class="clearfix px-3" mdbBtn type="button" color="black" block="true" mdbWavesEffect>
         <span class="float-left">Subtotal</span>  <span class="float-right">£ {{totalprice}}</span>
     </button>
-    <button class="clearfix px-3" mdbBtn type="button" color="red" block="true" mdbWavesEffect style="background-color: #ed4134!important;" >
+    <button class="clearfix px-3" mdbBtn type="button" color="red" block="true" (click)="checkOut()" mdbWavesEffect style="background-color: #ed4134!important;" >
         Checkout
     </button>
     </mdb-card>

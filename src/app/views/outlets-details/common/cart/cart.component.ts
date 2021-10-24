@@ -7,7 +7,7 @@ import {CommonService} from '../../../../service/common.service';
 })
 export class CartComponent implements OnInit {
   productlist:any;
-  totalprice:any = 50;
+  totalprice:any = 0;
   constructor(private commonservice:CommonService) {
     this.productlist = this.commonservice.productsList;
     this.commonservice.productcount.subscribe(() => {
@@ -24,6 +24,15 @@ export class CartComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  checkOut(){
+    if(this.totalprice != 0){
+      
+    alert("Success!");
+    } else {
+      alert("fail!");
+    }
   }
   changeCount(type:any,index:any){
     if(type == 'minus'){

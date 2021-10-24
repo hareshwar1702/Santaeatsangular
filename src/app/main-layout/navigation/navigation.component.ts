@@ -113,7 +113,7 @@ export class NavigationComponent implements OnInit {
           console.log("Geolocation is not supported by this browser.");
           reject(false);
         }
-      });
+      }); 
 
   }
 
