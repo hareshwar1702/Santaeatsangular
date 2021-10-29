@@ -19,8 +19,7 @@ export class ProductsComponent implements OnInit {
       this.productsList= null;
       this.productsList = this.commonservice.categories;
       for(var i=0;i<=this.productsList.length-1;i++){
-        this.productsList[i]['count'] = 0;
-        this.productsList[i]['price'] = 1;
+        this.productsList[i]['index'] = i;
       }
       this.commonservice.productsList = this.productsList;
     })
@@ -33,11 +32,11 @@ export class ProductsComponent implements OnInit {
     if(type == 'minus'){
       if( this.productsList[index]['count'] > 0){
         this.productsList[index]['count'] = this.productsList[index]['count'] -1;
-        this.commonservice.countChange(this.productsList[index]['count'],index);
+        this.commonservice.countChange(this.productsList[index]['count'],index,'minus');
       }
     } else{
         this.productsList[index]['count'] = this.productsList[index]['count'] +1;
-        this.commonservice.countChange(this.productsList[index]['count'],index);
+        this.commonservice.countChange(this.productsList[index]['count'],index,'plus');
     }
   }
 

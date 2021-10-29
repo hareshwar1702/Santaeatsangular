@@ -7,17 +7,17 @@ import {CommonService} from '../../../../service/common.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  productlist:any;
+  checkoutarr:any;
   totalprice:any = 0;
-  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,) {
-    this.productlist = this.commonservice.productsList;
+  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router) {
+    this.checkoutarr = this.commonservice.checkoutarr;
     this.commonservice.productcount.subscribe(() => {
       this.totalprice = 0;
-      this.productlist = this.commonservice.productsList;
-      for(let i =0;i<  this.productlist.length;i++){
-        if(this.productlist[i]['count'] > 0){
-          this.totalprice = this.totalprice + (this.productlist[i]['price']*this.productlist[i]['count']);
-
+      this.checkoutarr = this.commonservice.checkoutarr;
+      for(let i =0;i<  this.checkoutarr.length;i++){
+        if(this.checkoutarr[i]['count'] > 0){
+          this.totalprice = this.totalprice + (this.checkoutarr[i]['price']*this.checkoutarr[i]['count']);
+          this.commonservice.totalprice = this.totalprice;
         }
       }
     });
@@ -29,21 +29,20 @@ export class CartComponent implements OnInit {
 
   checkOut(){
     if(this.totalprice != 0){
-      this.zone.run(() => {this.router.navigate(['/outlets-details']); });
-    alert("Success!");
+      this.zone.run(() => {this.router.navigate(['/checkout/checkout-details']); });
     } else {
       alert("fail!");
     }
   }
   changeCount(type:any,index:any){
     if(type == 'minus'){
-      if( this.productlist[index]['count'] > 0){
-        this.productlist[index]['count'] = this.productlist[index]['count'] -1;
-        this.commonservice.countChange(this.productlist[index]['count'],index);
+      if( this.checkoutarr[index]['count'] >= 0){
+        this.checkoutarr[index]['count'] = this.checkoutarr[index]['count'] -1;
+        this.commonservice.countChange(this.checkoutarr[index]['count'],this.checkoutarr[index]['index'],'minus');
       }
     } else{
-        this.productlist[index]['count'] = this.productlist[index]['count'] +1;
-        this.commonservice.countChange(this.productlist[index]['count'],index);
+        this.checkoutarr[index]['count'] = this.checkoutarr[index]['count'] +1;
+        this.commonservice.countChange(this.checkoutarr[index]['count'],index,'plus');
     }
   }
 

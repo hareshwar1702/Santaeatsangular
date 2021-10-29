@@ -15,7 +15,7 @@
         
                 <!--Image-->
                 <div class="view overlay rounded z-depth-1">
-                  <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" alt="Sample image">
+                  <img class="img-fluid" [src]="restaurantObj.restaurant_logo"  alt="Sample image">
                   <a>
                     <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
                   </a>
@@ -30,13 +30,13 @@
                 <!-- Excerpt -->
                 <div class="font-weight-bold d-flex dark-grey-text cart-plus-minus">
                     <div class="col-10 col-lg-11 text-truncate pl-0 mb-2">
-                        <p class="font-weight-bold dark-grey-text mb-1">Plan Padadam</p>
+                        <p class="font-weight-bold dark-grey-text mb-1">{{restaurantObj.restaurant_name}}</p>
                     </div>
                 </div>
                
                 <a href="#!" class="red-text">
                     <h6 class="font-weight-bold mb-3">
-                        <small class="text-muted">Milk,Mustard,Crustaceans</small>
+                        <small class="text-muted">{{restaurantObj.restaurant_foodtype}}</small>
                     </h6>
                 </a>        
               </div>
@@ -49,52 +49,30 @@
           <hr/>
       <!--Card content-->
       <mdb-card-body class="p-3 p-lg-4">
-          <div class="scroll-cart">
-        <dl class="row d-flex justify-content-between">
-            <dd class="col-sm-8 col-12">
-                Vegetable Dansak vfddfdfg
-            </dd>
-            <dd class="col-sm-4 col-6">
-                $ 2000
-            </dd>
-            <dd class="col-sm-4 col-5 d-flex justify-content-between cart-plus-minus">
-                <a>
-                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="minus"></mdb-icon>
-                    </span>
-                </a>
-                <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" />
-                <a>
-                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="plus"></mdb-icon>
-                    </span>
-                </a>
-            </dd>
-        </dl>
-
-        <hr />
-
-        <dl class="row d-flex justify-content-between">
-            <dd class="col-sm-8 col-12">
-                Tandoori mixed grill
-            </dd>
-            <dd class="col-sm-4 col-6">
-                $ 2000
-            </dd>
-            <dd class="col-sm-4 col-5 d-flex justify-content-between cart-plus-minus">
-                <a>
-                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="minus"></mdb-icon>
-                    </span>
-                </a>
-                <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" />
-                <a>
-                    <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus">
-                        <mdb-icon fas icon="plus"></mdb-icon>
-                    </span>
-                </a>
-            </dd>
-        </dl>
+          <div class="scroll-cart" *ngFor="let products of productlist;let cardIndex = index">
+            <div  *ngIf="products.count > 0">
+              <dl class="row d-flex justify-content-between" style="border-bottom: 1px solid black;">
+                  <dd class="col-sm-8 col-12"  >
+                    {{products.category_name}}
+                  </dd>
+                  <dd class="col-sm-4 col-6"  >
+                      $ {{products.price}}
+                  </dd>
+                  <dd class="col-sm-4 col-5 d-flex justify-content-between cart-plus-minus"  >
+                      <a>
+                          <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus" (click)="changeCount('minus',cardIndex)">
+                              <mdb-icon fas icon="minus"></mdb-icon>
+                          </span>
+                      </a>
+                      <input mdbInput type="text" class="form-control z-depth-1 form-control-sm" [(ngModel)]="products.count" />
+                      <a>
+                          <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus" (click)="changeCount('plus',cardIndex)">
+                              <mdb-icon fas icon="plus"></mdb-icon>
+                          </span>
+                      </a>
+                  </dd>
+              </dl>
+            </div>
         </div>
         <mdb-card class="mb-3" bgColor="bg-light">
             <mdb-card-body>
@@ -103,19 +81,19 @@
                       Sub Total
                     </dd>
                     <dd class="col-sm-4 col-5 text-right">
-                      $ 2000
+                      $ {{totalprice}}
                     </dd>
                     <dd class="col-sm-8 col-7">
                         Service Charge
                       </dd>
                       <dd class="col-sm-4 col-5 text-right">
-                        $ 2000
+                        $ {{serviceCharge}}
                       </dd>
                       <dd class="col-sm-8 col-7">
                         Delivery Charge
                       </dd>
                       <dd class="col-sm-4 col-5 text-right">
-                        $ 2000
+                        $ {{deliveryCharge}}
                       </dd>
                   </dl>
             </mdb-card-body>
@@ -125,7 +103,7 @@
                       Total
                     </dd>
                     <dd class="col-sm-4 col-5 text-right">
-                      $ 2000
+                      $ {{total}}
                     </dd>
                 </dl>
             </mdb-card-header>

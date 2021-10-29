@@ -9,7 +9,7 @@
         </mdb-card-header>
       <!--Card content-->
       <mdb-card-body class="p-3 scroll-cart">
-        <div *ngFor="let products of productlist;let cardIndex = index">
+        <div *ngFor="let products of checkoutarr;let cardIndex = index">
         <dl class="row d-flex justify-content-between borderbottom"  *ngIf="products.count > 0">
             <dd class="col-sm-8">
                 {{products.category_name}}
