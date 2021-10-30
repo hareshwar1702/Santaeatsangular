@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
@@ -30,12 +30,14 @@ import { AddressComponent } from './checkout/common/address/address.component';
 import { CheckoutCartComponent } from './checkout/common/checkout-cart/checkout-cart.component';
 import { DeliveryDetailsComponent } from './checkout/common/delivery-details/delivery-details.component';
 import { CustomerDetailsComponent } from './checkout/common/customer-details/customer-details.component';
+import { AddaddressComponent } from './checkout/common/address/addaddress/addaddress.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
@@ -66,7 +68,8 @@ import { CustomerDetailsComponent } from './checkout/common/customer-details/cus
     AddressComponent,
     CheckoutCartComponent,
     DeliveryDetailsComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    AddaddressComponent
 
   ],
   exports: [

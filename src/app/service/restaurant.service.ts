@@ -29,5 +29,11 @@ export class RestaurantService {
   restopruntmenu(id:Number){
     return this.http.get('https://santaeatsapi.edigito.in/mapped_restaurant_menus?restaurant_id='+id+''); 
   }
+  addaddress(data:any){
+    return this.http.post("https://api.menukart.online/add-address",data);
+  }
+  editaddress(data:any){
+    return this.http.post("https://api.menukart.online/update-address",data);
+  }
 
 }

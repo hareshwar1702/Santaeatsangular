@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { ErrorModule } from './views/errors/error.module';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { Map1Component } from './views/maps/map1/map1.component';
 import { ModalsComponent } from './views/modals/modals.component';
@@ -98,6 +99,7 @@ const routes: Route[] = [
     ErrorModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxStripeModule.forRoot('pk_test_51Jq05JSFO2k4lj9j8r9TeyYlzrmh1aDD7XmZcVjFR8ZykCIyLSxdsT1DNBdMeQA1fNytJKbagcKYrfg1Wr5Kg64S00CqS8PQjO')
     
   ],
   entryComponents: [ LoginComponent],

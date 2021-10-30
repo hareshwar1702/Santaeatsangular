@@ -14,6 +14,8 @@ export class CommonService {
   restaurantObj: any;
   productsList:any;
   totalprice:any;
+  addressmode:string;
+  finalcost:any;
   constructor() { }
   
   latlogtrigerchange(lat:Number,long:Number){

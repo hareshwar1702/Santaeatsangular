@@ -19,6 +19,7 @@ export class CheckoutCartComponent implements OnInit {
     this.restaurantObj = this.commonservice.restaurantObj;
     this.totalprice = this.commonservice.totalprice;
     this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+    this.commonservice.finalcost = this.total;
     this.commonservice.productcount.subscribe(() => {
       this.totalprice = 0;
       this.total = 0;
@@ -28,6 +29,7 @@ export class CheckoutCartComponent implements OnInit {
           this.totalprice = this.totalprice + (this.productlist[i]['price']*this.productlist[i]['count']);
           this.commonservice.totalprice = this.totalprice;
           this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+          this.commonservice.finalcost = this.total;
         }
       }
     });

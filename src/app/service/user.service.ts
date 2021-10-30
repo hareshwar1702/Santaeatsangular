@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-
+  userdeails:any;
   constructor(public httpclient: HttpClient) { }
 
   login(val:FormData){

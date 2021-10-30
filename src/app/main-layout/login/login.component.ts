@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
 
     this.userservice.login(formData).subscribe(res => {
       if(res && res.hasOwnProperty('userdetails')){
+        this.userservice.userdeails = res;
         this.zone.run(() => {this.router.navigate(['/dashboards']); });
         this.onReset();
         this.closeLoginModal();

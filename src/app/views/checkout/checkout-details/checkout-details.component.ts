@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/service/common.service';
 
 
 @Component({
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkout-details.component.scss']
 })
 export class CheckoutDetailsComponent implements OnInit {
- 
-  constructor() { }
+  totalprice;
+  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,) { 
+    this.totalprice = this.commonservice.totalprice;
+    if(!this.totalprice){
+      this.zone.run(() => {this.router.navigate(['/dashboards']); });
+    }
+  }
 
   ngOnInit(): void {
   }

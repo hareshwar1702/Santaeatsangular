@@ -1,7 +1,7 @@
 <mdb-card>
     <mdb-card-header>Delivery Details</mdb-card-header>
     <mdb-card-body>
-      <a href=""  mdbWavesEffect mdbBtn color="light" size="sm"><mdb-icon class="red-text mr-1" fas icon="eye"></mdb-icon>Add Address</a>
+      <a  mdbWavesEffect mdbBtn color="light" size="sm"  (click)="openAddAddressModal('Add')"><mdb-icon class="red-text mr-1" fas icon="eye"></mdb-icon>Add Address</a>
       <div class="row mt-3">
           <div class="col-lg-6 col-sm-12">
             <mdb-card class="mb-3">
@@ -11,7 +11,7 @@
                             <p class="font-weight-bold dark-grey-text mb-1">
                                 <mdb-icon fas icon="briefcase" class="mr-1"></mdb-icon>Work</p>
                         </div>
-                        <a>
+                        <a (click)="openAddAddressModal('Edit')">
                             <span mdbWavesEffect class="badge red z-depth-1 text-white mr-1 _delete">
                                 <mdb-icon far icon="edit"></mdb-icon>
                             </span>

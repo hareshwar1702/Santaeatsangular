@@ -1,0 +1,158 @@
+<div class="modal-header text-center">
+    <h5 class="modal-title white-text w-100 font-weight-bold" *ngIf="!addressmode" id="myModalLabel">Add New Address</h5>
+    <h5 class="modal-title white-text w-100 font-weight-bold" *ngIf="addressmode" id="myModalLabel">Edit Address</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeLoginModal()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body mx-3" style="overflow: auto;height: 89vh;width: 94%;padding: 0;">
+    <!-- Extended material form grid -->
+    <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+      <!-- Grid row -->
+      <div class="form-row">
+        <!-- Grid column -->
+        <div class="col-md-6">
+          <!-- Material input -->
+          <div class="md-form form-group">
+            <input mdbInput type="text" class="form-control" formControlName="username" id="inputEmail4MD" 
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Name">
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Name is required</div>
+            </div>
+            <label for="inputEmail4MD">Full Name</label>
+          </div>
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-6">
+          <!-- Material input -->
+          <div class="md-form form-group">
+            <input mdbInput type="email" class="form-control" formControlName="email" id="inputPassword4MD"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+            <label for="inputPassword4MD">Email</label>
+          </div>
+        </div>
+        <!-- Grid column -->
+        <div class="col-md-12">
+          <!-- Material input -->
+          <div class="md-form form-group">
+            <input mdbInput type="number" class="form-control" formControlName="number" id="inputEmail4MD" 
+            placeholder="Phone Number" [ngClass]="{ 'is-invalid': submitted && f.number.errors }" >
+            <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+              <div *ngIf="f.number.errors.required">Phone No is required</div>
+            </div>
+            <label for="inputEmail4MD">Phone No</label>
+          </div>
+        </div>
+      </div>
+      <!-- Grid row -->
+      <div class="form-row">
+          <div style="height: 50px; width: 100%;">
+          map
+          </div>
+      </div>
+      <!-- Grid row -->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-12">
+          <!-- Material input -->
+          <div class="md-form form-group">
+            <input mdbInput type="text" class="form-control" id="inputAddressMD" formControlName="address" placeholder="1234 Main St"
+            [ngClass]="{ 'is-invalid': submitted && f.address.errors }" >
+            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+              <div *ngIf="f.address.errors.required">Address is required</div>
+            </div>
+            <label for="inputAddressMD">Address</label>
+          </div>
+        </div>
+        <!-- Grid column -->
+  
+  
+      </div>
+      <!-- Grid row -->
+  
+      <!-- Grid row -->
+      <div class="form-row">
+        <!-- Grid column -->
+        <div class="col-md-6">
+          <!-- Material input -->
+          <div class="md-form form-group">
+            <input mdbInput type="text" class="form-control" id="inputCityMD" formControlName="aptno" placeholder="New York City"
+            [ngClass]="{ 'is-invalid': submitted && f.aptno.errors }" >
+            <div *ngIf="submitted && f.aptno.errors" class="invalid-feedback">
+              <div *ngIf="f.aptno.errors.required">Apartment No is required</div>
+            </div>
+            <label for="inputCityMD">Apartment No</label>
+          </div>
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-6">
+          <!-- Material input -->
+          <div class="md-form form-group">
+            <input mdbInput type="text" class="form-control" id="inputZipMD" formControlName="postalcode" placeholder="11206-1117"
+            [ngClass]="{ 'is-invalid': submitted && f.postalcode.errors }" >
+            <div *ngIf="submitted && f.postalcode.errors" class="invalid-feedback">
+              <div *ngIf="f.postalcode.errors.required">Postal Code is required</div>
+            </div>
+            <label for="inputZipMD">Postal Code</label>
+          </div>
+        </div>
+        <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-12">
+          <!-- Material input -->
+          <div class="md-form form-group">
+            <input mdbInput type="text" class="form-control" id="inputAddress2MD" formControlName="landmark" placeholder="Apartment, studio, or floor"
+            [ngClass]="{ 'is-invalid': submitted && f.landmark.errors }" >
+            <div *ngIf="submitted && f.landmark.errors" class="invalid-feedback">
+              <div *ngIf="f.landmark.errors.required">Landmark is required</div>
+            </div>
+            <label for="inputAddress2MD">Landmark</label>
+          </div>
+        </div>
+        <!-- Grid column -->
+        </div>
+      <!-- Grid row -->
+      <div class="form-row">
+        <label>Label for Address</label>
+        <div class="col-md-12">
+         
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline1" name="addresstype"  value="Home" formControlName="addresstype"  mdbInput>
+            <label class="custom-control-label" for="defaultInline1">Home</label>
+          </div>
+        
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline2" name="addresstype"  value="Work"  formControlName="addresstype" mdbInput>
+            <label class="custom-control-label" for="defaultInline2">Work</label>
+          </div>
+        
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="defaultInline3" name="addresstype"  value="Others"  formControlName="addresstype" mdbInput>
+            <label class="custom-control-label" for="defaultInline3">Others</label>
+          </div> 
+          
+        </div>
+        <div *ngIf="f.addresstype.touched && f.addresstype.invalid" class="invalid-feedback">
+          <div *ngIf="f.addresstype.errors.required">Label for Address is required.</div>
+      </div>
+      </div>
+      <div class="form-row">
+      <div class="col-md-12 text-center" style="display: inline-flex;margin: 17px 8px;">
+        <button type="button" mdbBtn gradient="red" type="submit" block="true" rounded="true"
+          class="z-depth-1a waves-light" mdbWavesEffect>Save
+        </button>
+        <button type="button" mdbBtn gradient="red" block="true" rounded="true"
+        class="z-depth-1a waves-light" (click)="closeLoginModal()" mdbWavesEffect>Cancel
+      </button>
+      </div>
+    </div>
+    </form>
+    <!-- Extended material form grid -->
+  </div>
