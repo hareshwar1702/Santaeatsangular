@@ -35,5 +35,11 @@ export class RestaurantService {
   editaddress(data:any){
     return this.http.post("https://api.menukart.online/update-address",data);
   }
+  getorderhistory(data:any){
+    return this.http.get("https://santaeatsapi.edigito.in/orders?user_id="+data+"");
+  }
+  getaddresses(data:any){
+    return this.http.get("https://santaeatsapi.edigito.in/address?user_id="+data+"");
+  }
 
 }

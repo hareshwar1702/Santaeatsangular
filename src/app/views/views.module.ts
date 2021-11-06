@@ -18,7 +18,7 @@ import { StatsCard2Component } from './dashboards/common/stats-card2/stats-card2
 import { Dashboard1Component } from './dashboards/dashboard1/dashboard1.component';
 import { Profile1Component } from './profile/profile1/profile1.component';
 import { HelpComponent } from './help/help.component';
-
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { CategoriesComponent } from './dashboards/common/categories/categories.component';
 import { BannerCarouselComponent } from '../main-layout/banner-carousel/banner-carousel.component';
 import { OutletsDetailsComponent } from './outlets-details/outlets-details/outlets-details.component';
@@ -46,6 +46,8 @@ import { AddaddressComponent } from './checkout/common/address/addaddress/addadd
       apiKey: ''
     }),
     CalendarModule.forRoot(),
+    NgxMaterialTimepickerModule.setLocale('en'),
+    
 
   ],
   declarations: [

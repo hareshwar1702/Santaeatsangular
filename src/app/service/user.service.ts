@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   userdeails:any;
+  loginchange = new EventEmitter();
   constructor(public httpclient: HttpClient) { }
 
   login(val:FormData){
@@ -14,5 +15,8 @@ export class UserService {
 
   register(val:FormData){
     return this.httpclient.post("https://santaeatsapi.edigito.in/sign-up",val);
+  }
+  closefunction(){
+    this.loginchange.emit();
   }
 }

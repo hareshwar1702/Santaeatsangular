@@ -2,16 +2,17 @@
     <mdb-card-header>Delivery Details</mdb-card-header>
     <mdb-card-body>
       <a  mdbWavesEffect mdbBtn color="light" size="sm"  (click)="openAddAddressModal('Add')"><mdb-icon class="red-text mr-1" fas icon="eye"></mdb-icon>Add Address</a>
-      <div class="row mt-3">
-          <div class="col-lg-6 col-sm-12">
+      <div class="row mt-3" *ngIf="addresses">
+          <div class="col-lg-6 col-sm-12"*ngFor="let address of addresses.address" >
             <mdb-card class="mb-3">
                 <mdb-card-body>
                     <div class="font-weight-bold d-flex dark-grey-text cart-plus-minus">
                         <div class="col-10 text-truncate pl-0 mb-2">
                             <p class="font-weight-bold dark-grey-text mb-1">
-                                <mdb-icon fas icon="briefcase" class="mr-1"></mdb-icon>Work</p>
+                                <!-- <mdb-icon fas icon="briefcase" class="mr-1"></mdb-icon>Work</p> -->
+                                <mdb-icon fas icon="home" class="mr-1"></mdb-icon>Home</p>
                         </div>
-                        <a (click)="openAddAddressModal('Edit')">
+                        <a (click)="openAddAddressModal('Edit',address)">
                             <span mdbWavesEffect class="badge red z-depth-1 text-white mr-1 _delete">
                                 <mdb-icon far icon="edit"></mdb-icon>
                             </span>
@@ -24,41 +25,16 @@
                     </div>
                     <a href="#!" class="red-text">
                         <h6 class="font-weight-bold mb-3">
-                            <small class="text-muted">London, DC</small>
+                            <small class="text-muted">{{address.door_flat_no}},{{address.landmark}},{{address.myaddress}},{{address.pincode}}</small>
                         </h6>
+                        <p class="font-weight-bold mb-3">  <small class="text-muted">Mobile no:-{{address.mobileno}}</small></p>
+                        <p class="font-weight-bold mb-3"> <small class="text-muted">Email id:-{{address.email}}</small></p>
                     </a>
                     <a  mdbBtn color="red" mdbWavesEffect size="sm" class="mt-3">Deliver Here</a>
                 </mdb-card-body>
               </mdb-card>
           </div>
-          <div class="col-lg-6 col-sm-12">
-            <mdb-card class="mb-3">
-                <mdb-card-body>
-                    <div class="font-weight-bold d-flex dark-grey-text cart-plus-minus">
-                        <div class="col-10 text-truncate pl-0 mb-2">
-                            <p class="font-weight-bold dark-grey-text mb-1">
-                                <mdb-icon fas icon="home" class="mr-1"></mdb-icon>Home</p>
-                        </div>
-                        <a>
-                            <span mdbWavesEffect class="badge red z-depth-1 text-white mr-1 _delete">
-                                <mdb-icon far icon="edit"></mdb-icon>
-                            </span>
-                        </a>
-                        <a>
-                            <span mdbWavesEffect class="badge red z-depth-1 text-white _edit">
-                                <mdb-icon fas icon="trash-alt"></mdb-icon>
-                            </span>
-                        </a>
-                    </div>
-                    <a href="#!" class="red-text">
-                        <h6 class="font-weight-bold mb-3">
-                            <small class="text-muted">123, AC, London, DC</small>
-                        </h6>
-                    </a>
-                    <a  mdbBtn color="red" size="sm" mdbWavesEffect class="mt-3">Deliver Here</a>
-                </mdb-card-body>
-              </mdb-card>
-          </div>
+         
       </div>
     </mdb-card-body>
 </mdb-card>

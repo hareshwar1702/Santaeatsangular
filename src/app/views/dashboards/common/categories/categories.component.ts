@@ -10,7 +10,7 @@ export class CategoriesComponent implements OnInit {
   public restorantList: any = [];
   categories:any;
   start:number = 0;
-  end:number = 2;
+  end:number = 7;
   constructor(private restaurantService: RestaurantService,private commonservice:CommonService) {
     this.commonservice.latlogtrigger.subscribe((data) => {
       console.log(data);
@@ -59,13 +59,13 @@ export class CategoriesComponent implements OnInit {
       if(this.start >=0){
       temps = [];
       if(this.start != 0){
-      this.start = this.start - 3;
-      this.end = this.end - 3;
+      this.start = this.start - 8;
+      this.end = this.end - 8;
       }
       for(var i = this.start;i<=this.end;i++){
         temps.push(this.cards[i]);
         if(i == this.end){
-          this.slides = this.chunk(temps, 3);
+          this.slides = this.chunk(temps, 8);
         }
       }
      }
@@ -73,14 +73,14 @@ export class CategoriesComponent implements OnInit {
        if(this.start <= this.cards.length){
       temps = [];
       if(this.end <= this.cards.length){
-      this.start = this.start + 3;
-      this.end = this.end + 3;
+      this.start = this.start + 8;
+      this.end = this.end + 8;
       }
       for(var i = this.start;i<=this.end;i++){
         if(i<= this.cards.length){
         temps.push(this.cards[i]);
         if(i == this.end || i == this.cards.length -1){
-          this.slides = this.chunk(temps, 3);
+          this.slides = this.chunk(temps, 8);
         }
       }
       }

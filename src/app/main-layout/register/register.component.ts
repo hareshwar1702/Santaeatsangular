@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
     formData1.append('device_token',Math.random() + navigator.userAgent + Date() );
     this.userservice.register(formData1).subscribe(res => {
       if(res && res.hasOwnProperty('userdetails')){
-        this.zone.run(() => {this.router.navigate(['/dashboards']); });
         this.onReset();
         this.closeLoginModal();
       }
@@ -70,6 +69,7 @@ export class RegisterComponent implements OnInit {
       this.modalRef.hide();
   }
   closeLoginModal(){
+    this.userservice.closefunction();
     this.modalRef.hide();
   }
 }

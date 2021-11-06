@@ -8,7 +8,9 @@ export class CommonService {
   latlogtrigger = new EventEmitter();
   restomenu = new EventEmitter();
   menuclick = new EventEmitter();
+  deliverytype = new EventEmitter();
   categories:any;
+  editedobj:any;
   menus:any;
   checkoutarr:any = [];
   restaurantObj: any;
@@ -23,7 +25,9 @@ export class CommonService {
     var json = {latitude:lat,longitude:long};
     this.latlogtrigger.emit(json)
   }
-
+  deleverytypefunction(val:boolean){
+    this.deliverytype.emit(val);
+  }
   countChange(count:any,index:any,type:string) {
     this.productsList[index]['count'] = count;
     if(type == 'minus'){

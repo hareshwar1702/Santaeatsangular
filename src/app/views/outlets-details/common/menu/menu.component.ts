@@ -7,16 +7,20 @@ import { CommonService } from '../../../../service/common.service';
 })
 export class MenuComponent implements OnInit {
   menus:any;
+  index =  0;
   constructor(public commonservice:CommonService) {
     this.commonservice.restomenu.subscribe(()=>{
       this.menus = this.commonservice.menus;
+      this.commonservice.changemenu(this.menus[0]);
     })
    }
 
   ngOnInit(): void {
   }
 
-  menuitemclick(data:any){
+  menuitemclick(data:any,index:number){
+    this.index =  index;
+    console.log(index);
     this.commonservice.changemenu(data);
   }
 

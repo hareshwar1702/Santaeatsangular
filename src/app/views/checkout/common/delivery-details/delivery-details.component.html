@@ -29,19 +29,18 @@
           <div class="row mt-3">
               <div class="col-lg-6 col-sm-12">
                   <label for="basic-url">Select Date</label>                  
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" aria-label="time">
-                    <div class="input-group-append" mdbWavesEffect>
-                      <span class="input-group-text"><mdb-icon fas icon="calendar-alt" red class="prefix"></mdb-icon></span>
-                    </div>
+                  <div class="input-group mb-3" style="width: 85%;">
+                    <input type="date" class="form-control" [(ngModel)]="date"  style="height: 32px;border: 1px solid black">
                   </div> 
               </div>
               <div class="col-lg-6 col-sm-12">
                   <label for="basic-url">Select Time</label>                  
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control" aria-label="time">
+                    <!-- <input type="text" class="form-control" aria-label="time"> -->
+                    <input [ngxTimepicker]="picker" [(ngModel)]="time">
+                       <ngx-material-timepicker #picker></ngx-material-timepicker>
                     <div class="input-group-append" mdbWavesEffect>
-                      <span class="input-group-text"><mdb-icon far icon="clock" red class="prefix"></mdb-icon></span>
+                      <span class="input-group-text" [ngxTimepicker]="picker"><mdb-icon far icon="clock" red class="prefix"></mdb-icon></span>
                     </div>
                   </div> 
               </div>

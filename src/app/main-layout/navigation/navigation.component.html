@@ -67,26 +67,29 @@
       <!-- Links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link waves-light"  mdbWavesEffect>Partner with us</a>
+          <a class="nav-link waves-light" *ngIf="userobj" routerLink="/orderhistory" mdbWavesEffect>Order History</a>
         </li>
+        <!-- <li class="nav-item active">
+          <a class="nav-link waves-light"  mdbWavesEffect>Partner with us</a>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon> Search</a>
         </li>
   
         <!-- Dropdown -->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!userobj">
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link waves-light" data-toggle="modal" data-target="#basicExample" (click)="openLoginModal()"  mdbWavesEffect>
               <mdb-icon fas icon="user"></mdb-icon> Login</a>
         </li> 
           
-        <!-- <li class="nav-item dropdown" dropdown>
+        <li class="nav-item dropdown" dropdown *ngIf="userobj">
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
+            <mdb-icon fas icon="angle-user-alt"></mdb-icon> Profile<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
           </div>
-        </li> -->
+        </li>
   
       </ul>
       <!-- Links -->

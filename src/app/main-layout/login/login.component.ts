@@ -5,6 +5,7 @@ import { RegisterComponent } from '../register/register.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/service/common.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   constructor(private modalService: MDBModalService,private formBuilder: FormBuilder,public zone: NgZone,
-    public userservice:UserService,public router: Router,public  modalRef: MDBModalRef) { }
+    public userservice:UserService,public router: Router,public  modalRef: MDBModalRef,public commonservice:CommonService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -41,7 +42,6 @@ export class LoginComponent implements OnInit {
     this.userservice.login(formData).subscribe(res => {
       if(res && res.hasOwnProperty('userdetails')){
         this.userservice.userdeails = res;
-        this.zone.run(() => {this.router.navigate(['/dashboards']); });
         this.onReset();
         this.closeLoginModal();
       }
@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
       this.modalRef.hide();
   }
   closeLoginModal(){
+      this.userservice.closefunction();
       this.modalRef.hide();
   }
 

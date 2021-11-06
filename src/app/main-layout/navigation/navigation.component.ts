@@ -4,6 +4,7 @@ import { MDBModalRef,MDBModalService } from 'angular-bootstrap-md';
 import { LoginComponent } from '../login/login.component';
 import { RestaurantService } from '../../service/restaurant.service';
 import { CommonService } from '../../service/common.service';
+import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -17,9 +18,13 @@ export class NavigationComponent implements OnInit {
   locationName:string = '';
   latitude:number;
   longitude:number;
+  userobj:any;
   constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService,
-       public commonService : CommonService) {
+       public commonService : CommonService,public userservice:UserService) {
     this.clicked = this.clicked === undefined ? false : true;
+    this.userservice.loginchange.subscribe(()=>{
+      this.userobj = this.userservice.userdeails;
+    })
   }
 
   ngOnInit() {

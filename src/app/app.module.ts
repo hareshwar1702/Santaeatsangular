@@ -13,6 +13,8 @@ import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { ErrorModule } from './views/errors/error.module';
 import { NgxStripeModule } from 'ngx-stripe';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 
 import { Map1Component } from './views/maps/map1/map1.component';
 import { ModalsComponent } from './views/modals/modals.component';
@@ -29,6 +31,7 @@ import { NavigationModule } from './main-layout/navigation/navigation.module';
 import { LoginComponent } from './main-layout/login/login.component';
 import { RegisterComponent } from './main-layout/register/register.component';
 import { CheckoutDetailsComponent } from './views/checkout/checkout-details/checkout-details.component';
+import { OrderhistoryComponent } from './main-layout/orderhistory/orderhistory.component';
 // import { BannerCarouselComponent } from './main-layout/banner-carousel/banner-carousel.component';
 
 const routes: Route[] = [
@@ -43,7 +46,7 @@ const routes: Route[] = [
       { path: '', component: Dashboard1Component },
     ]
   },
-  
+  {path: 'orderhistory', component: OrderhistoryComponent},
   { path: 'outlets-details', children:
   [
     { path: 'outlets', component: OutletsDetailsComponent},
@@ -82,6 +85,10 @@ const routes: Route[] = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    OrderhistoryComponent
+    // DatepickerModule.forRoot(),
+    // TimepickerModule.forRoot(),
+    // DatetimePopupModule.forRoot()
     // BannerCarouselComponent
   ],
   imports: [
@@ -99,6 +106,7 @@ const routes: Route[] = [
     ErrorModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaterialTimepickerModule.setLocale('en'),
     NgxStripeModule.forRoot('pk_test_51Jq05JSFO2k4lj9j8r9TeyYlzrmh1aDD7XmZcVjFR8ZykCIyLSxdsT1DNBdMeQA1fNytJKbagcKYrfg1Wr5Kg64S00CqS8PQjO')
     
   ],

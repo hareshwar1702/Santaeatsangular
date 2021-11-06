@@ -1,0 +1,9 @@
+<div class="row" *ngFor="let order of orderHistory.data;let cardIndex = index">
+    <div class="col-md-1">orderid:-<span>{{order.order_id}}</span></div>
+    <div class="col-md-2">subtotal:-<span>{{order.subtotal}}</span></div>
+    <div class="col-md-1">sgst:-<span>{{order.sgst}}</span></div>
+    <div class="col-md-1">cgst:-<span>{{order.cgst}}</span></div>
+    <div class="col-md-3">to delivery address:-<span>{{order.to_delivery_address}}</span></div>
+    <div class="col-md-2">order date:-<span>{{order.order_date}}</span></div>
+    <div class="col-md-2">order_status:-<span>{{order.order_status}}</span></div>
+</div> 

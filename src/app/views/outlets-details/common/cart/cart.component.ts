@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {CommonService} from '../../../../service/common.service';
+import { UserService } from '../../../../service/user.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -9,8 +10,10 @@ import {CommonService} from '../../../../service/common.service';
 export class CartComponent implements OnInit {
   checkoutarr:any;
   totalprice:any = 0;
-  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router) {
+  userobj:any;
+  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,public userservice:UserService) {
     this.checkoutarr = this.commonservice.checkoutarr;
+    this.userobj = this.userservice.userdeails
     this.commonservice.productcount.subscribe(() => {
       this.totalprice = 0;
       this.checkoutarr = this.commonservice.checkoutarr;
@@ -21,6 +24,9 @@ export class CartComponent implements OnInit {
         }
       }
     });
+    this.userservice.loginchange.subscribe(()=>{
+      this.userobj = this.userservice.userdeails
+    })
 
    }
 
@@ -28,10 +34,12 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(){
-    if(this.totalprice != 0){
+    if(this.totalprice != 0 && this.userobj){
       this.zone.run(() => {this.router.navigate(['/checkout/checkout-details']); });
+    } else if(!this.userobj){
+      alert('Please login first!');
     } else {
-      alert("fail!");
+      alert("Please add value in card!");
     }
   }
   changeCount(type:any,index:any){

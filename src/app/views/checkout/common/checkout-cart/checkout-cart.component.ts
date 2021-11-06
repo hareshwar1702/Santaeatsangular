@@ -33,6 +33,15 @@ export class CheckoutCartComponent implements OnInit {
         }
       }
     });
+    this.commonservice.deliverytype.subscribe((val)=>{
+      if(val == true){
+        this.serviceCharge = 50;
+        this.deliveryCharge = 50;
+      } else {
+        this.serviceCharge = 0;
+        this.deliveryCharge = 0;
+      }
+    })
    }
 
   ngOnInit(): void {
