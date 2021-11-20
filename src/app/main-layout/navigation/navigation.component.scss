@@ -43,17 +43,18 @@
 ._search{
   color: #191919 !important;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 30px;
   height: 33px;
   width: 220px;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 0px 0px 0px;
+  padding: 4px 0px 0px 0px;
 }
 div.md-form{
   background: white;
   margin-left: 8px;
-  border-radius: 4px;
+  border-radius: 30px;
+  height: 40px;
 }
 button{
   background-color: red !important;
@@ -61,6 +62,7 @@ button{
   box-shadow: none;
   border: 1px solid white !important;
   color: white !important;
+  border-radius: 30px;
 }
 }
 
@@ -112,4 +114,77 @@ transition: .5s ease;
 40deg
 , #e6b72b, #ed4748) !important;
 }
+}
+
+.toggle-label {
+  position: relative;
+  display: block;
+  width: 192px;
+  height: 40px;
+  margin-top: 0px;
+  border-radius: 30px;
+}
+.toggle-label input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.toggle-label input[type=checkbox]+.back {
+  border-radius: 30px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e7e7e7;
+  transition: background 150ms linear;
+}
+
+.toggle-label input[type=checkbox]+.back .toggle {
+  display: block;
+  position: absolute;
+  content: ' ';
+  background: #fff;
+  width: 50%;
+  height: 79%;
+  transition: margin 150ms linear;
+  /* border: 1
+px
+solid #808080; */
+  border-radius: 30px;
+  margin: 4px 4px;
+}
+.toggle-label .label.on {
+  left: 0px;
+}
+.toggle-label .label {
+  display: block;
+  position: absolute;
+  width: 50%;
+  color: #302f2f;
+  line-height: 42px;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+.toggle-label input[type=checkbox]+.back .label.off {
+  color: #302f2f;
+}
+
+.toggle-label .label.off {
+  right: 0px;
+}
+.toggle-label input[type=checkbox]:checked+.back {
+  background: #e7e7e7;
+}
+.toggle-label input[type=checkbox]:checked+.back .toggle {
+  margin-left: 128px;
+}
+.toggle-label input[type=checkbox]:checked+.back .label.on {
+  color: #302f2f;
+}
+.toggle-label input[type=checkbox]:checked+.back .label.off {
+  color: #302f2f;
+}
+.toggle-label input[type=checkbox]:checked + .back .toggle {
+  margin-left: 91px;
 }

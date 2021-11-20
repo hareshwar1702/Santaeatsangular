@@ -32,6 +32,7 @@ import { LoginComponent } from './main-layout/login/login.component';
 import { RegisterComponent } from './main-layout/register/register.component';
 import { CheckoutDetailsComponent } from './views/checkout/checkout-details/checkout-details.component';
 import { OrderhistoryComponent } from './main-layout/orderhistory/orderhistory.component';
+import { PaymentSummaryComponent } from './views/checkout/payment-summary/payment-summary.component';
 // import { BannerCarouselComponent } from './main-layout/banner-carousel/banner-carousel.component';
 
 const routes: Route[] = [
@@ -74,6 +75,11 @@ const routes: Route[] = [
       { path: 'map1', component: Map1Component},
     ]
   },
+  { path: 'checkout', children:
+  [
+    { path: 'payment-summary', component: PaymentSummaryComponent},
+  ]
+},
 
   { path: 'modals', component: ModalsComponent},
   { path: '**', component: NotFoundComponent },

@@ -31,6 +31,7 @@ import { CheckoutCartComponent } from './checkout/common/checkout-cart/checkout-
 import { DeliveryDetailsComponent } from './checkout/common/delivery-details/delivery-details.component';
 import { CustomerDetailsComponent } from './checkout/common/customer-details/customer-details.component';
 import { AddaddressComponent } from './checkout/common/address/addaddress/addaddress.component';
+import { PaymentSummaryComponent } from './checkout/payment-summary/payment-summary.component';
 
 @NgModule({
   imports: [
@@ -71,7 +72,8 @@ import { AddaddressComponent } from './checkout/common/address/addaddress/addadd
     CheckoutCartComponent,
     DeliveryDetailsComponent,
     CustomerDetailsComponent,
-    AddaddressComponent
+    AddaddressComponent,
+    PaymentSummaryComponent
 
   ],
   exports: [
@@ -86,7 +88,8 @@ import { AddaddressComponent } from './checkout/common/address/addaddress/addadd
     BannerCarouselComponent,
     OutletsDetailsComponent,
     CartComponent,
-    CheckoutDetailsComponent
+    CheckoutDetailsComponent,
+    PaymentSummaryComponent
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

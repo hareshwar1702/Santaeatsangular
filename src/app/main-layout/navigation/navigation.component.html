@@ -44,15 +44,22 @@
     <!-- Collapsible content -->
     <links>
       <ul class="navbar-nav nav-left">
-        <li class="nav-item dropdown" dropdown>
-            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle _dropdown waves-light" mdbWavesEffect>
-                <!-- <mdb-icon fas icon="user"></mdb-icon>  -->
+        <li class="nav-item">
+            <!-- <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle _dropdown waves-light" mdbWavesEffect>
                 Home Delivery<span class="caret ml-3"></span>
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
                 <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
-            </div>
+            </div> -->
+            <label class='toggle-label'>
+              <input type='checkbox'/>
+                <span class='back'>
+                 <span class='toggle'></span>
+                  <span class='label on'>Delivery</span>
+                 <span class='label off'>Pickup</span>  
+               </span>
+             </label>
         </li>
         <li class="nav-item active">
             <form class="form-inline waves-light" mdbWavesEffect>

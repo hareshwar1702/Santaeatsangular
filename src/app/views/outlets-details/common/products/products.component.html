@@ -5,7 +5,7 @@
 <div class="single-news note"  *ngIf="productsList">
 
     <!-- Grid row -->
-    <div class="row borderbottom" *ngFor="let products of productsList;let cardIndex = index" >
+    <div class="row" *ngFor="let products of productsList;let cardIndex = index" >
 
       <!-- Grid column -->
       <div class="col-md-3 col-4 p-0-8" *ngIf="products.id == menuid">
