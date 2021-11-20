@@ -98,6 +98,7 @@ export class CategoriesComponent implements OnInit {
           const res: any = response;
 
           this.restorantList = res.list;
+          this.commonservice.restorantList = res.list;
         },
         (error) => {                              //Error callback
           console.error('Request failed with error')

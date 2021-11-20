@@ -11,8 +11,8 @@
 
             <!--Card content-->
             <mdb-card-body class="text-center">
-                <agm-map [latitude]="map.lat" [longitude]="map.lng" [mapTypeId]="'roadmap'" style="height: 300px">
-                    <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+                <agm-map   [latitude]="lat" [longitude]="lng" [mapTypeId]="'roadmap'" style="height: 300px">
+                    <agm-marker *ngFor="let map of maps; let i = index" [latitude]="map.latitude"  [label]="map.restaurant_name" [longitude]="map.longitude"></agm-marker>
                 </agm-map>
 
             </mdb-card-body>
@@ -32,8 +32,8 @@
 
             <!--Card content-->
             <mdb-card-body class="text-center">
-                <agm-map [latitude]="map.lat" [longitude]="map.lng" [mapTypeId]="'hybrid'" style="height: 300px">
-                    <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+                <agm-map [latitude]="lat" [longitude]="lng" [mapTypeId]="'hybrid'" style="height: 300px">
+                    <agm-marker  *ngFor="let map of maps; let i = index" [latitude]="map.latitude" [label]="map.restaurant_name" [longitude]="map.longitude"></agm-marker>
                 </agm-map>
 
             </mdb-card-body>
@@ -55,8 +55,8 @@
 
             <!--Card content-->
             <mdb-card-body class="text-center">
-                <agm-map [latitude]="map.lat" [longitude]="map.lng" [mapTypeId]="'satellite'" style="height: 300px">
-                    <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+                <agm-map [latitude]="lat" [longitude]="lng" [mapTypeId]="'satellite'" style="height: 300px">
+                    <agm-marker *ngFor="let map of maps; let i = index" [latitude]="map.latitude" [label]="map.restaurant_name" [longitude]="map.longitude"></agm-marker>
                 </agm-map>
 
             </mdb-card-body>
@@ -76,8 +76,8 @@
 
             <!--Card content-->
             <mdb-card-body class="text-center">
-                <agm-map [latitude]="map.lat" [longitude]="map.lng" [mapTypeId]="'terrain'" style="height: 300px">
-                    <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+                <agm-map  [latitude]="lat" [longitude]="lng" [mapTypeId]="'terrain'" style="height: 300px">
+                    <agm-marker *ngFor="let map of maps; let i = index" [latitude]="map.latitude" [label]="map.restaurant_name" [longitude]="map.longitude"></agm-marker>
                 </agm-map>
 
             </mdb-card-body>
