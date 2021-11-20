@@ -11,6 +11,7 @@ export class CommonService {
   deliverytype = new EventEmitter();
   categories:any;
   editedobj:any;
+  restorantList:any;
   menus:any;
   checkoutarr:any = [];
   restaurantObj: any;

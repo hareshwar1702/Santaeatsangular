@@ -41,5 +41,8 @@ export class RestaurantService {
   getaddresses(data:any){
     return this.http.get("https://santaeatsapi.edigito.in/address?user_id="+data+"");
   }
+  saveorder(data:FormData){
+    return this.http.post("https://santaeatsapi.edigito.in/save-order",data);
+  }
 
 }

@@ -72,7 +72,7 @@ const routes: Route[] = [
   },
   { path: 'maps', children:
     [
-      { path: 'map1', component: Map1Component},
+      { path: '', component: Map1Component},
     ]
   },
   { path: 'checkout', children:
@@ -91,7 +91,7 @@ const routes: Route[] = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    OrderhistoryComponent
+    OrderhistoryComponent,
     // DatepickerModule.forRoot(),
     // TimepickerModule.forRoot(),
     // DatetimePopupModule.forRoot()
