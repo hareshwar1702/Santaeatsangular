@@ -52,26 +52,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Pro Package</td>
-                  <td>4</td>
-                  <td>$200</td>
-                  <td>$800</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Web hosting</td>
-                  <td>1</td>
-                  <td>$10</td>
-                  <td>$10</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Consulting</td>
-                  <td>1 year</td>
-                  <td>$300</td>
-                  <td>$300</td>
+                <tr  *ngFor="let products of checkoutarr;let cardIndex = index">
+                  <th scope="row">{{cardIndex}}</th>
+                  <td>{{products.menu_displayname}}</td>
+                  <td>{{products.count}}</td>
+                  <td>${{products.menu_price}}</td>
+                  <td>${{products.menu_price * products.count}}</td>
                 </tr>
               </tbody>
   
@@ -84,10 +70,10 @@
             </div>
             <div class="col-xl-3">
               <ul class="list-unstyled">
-                <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li>
+                <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>${{totalamount}}</li>
                 <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111</li>
                 </ul>
-                <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span style="font-size: 25px;">$1221</span></p>
+                <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span style="font-size: 25px;">${{totalamount+111}}</span></p>
             </div>
           </div>
           <hr>
@@ -96,7 +82,7 @@
               <p>Thank you for your purchase</p>
             </div>
             <div class="col-xl-2">
-              <button type="button" class="btn btn-primary text-capitalize" style="background-color:#60bdf3 ;">Pay Now</button>
+              <button type="button" class="btn btn-primary text-capitalize" style="background-color:#60bdf3 ;" (click)="makePayment(totalamount)">Pay Now</button>
             </div>
           </div>
   

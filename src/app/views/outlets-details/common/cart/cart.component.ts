@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
       this.checkoutarr = this.commonservice.checkoutarr;
       for(let i =0;i<  this.checkoutarr.length;i++){
         if(this.checkoutarr[i]['count'] > 0){
-          this.totalprice = this.totalprice + (this.checkoutarr[i]['price']*this.checkoutarr[i]['count']);
+          this.totalprice = this.totalprice + (parseFloat(this.checkoutarr[i]['menu_price'])*this.checkoutarr[i]['count']);
           this.commonservice.totalprice = this.totalprice;
         }
       }
@@ -31,6 +31,13 @@ export class CartComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  deleteCard(){
+    this.totalprice = 0;
+    this.commonservice.checkoutarr = [];
+    this.checkoutarr = undefined;
+
   }
 
   checkOut(){

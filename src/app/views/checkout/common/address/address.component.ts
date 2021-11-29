@@ -16,6 +16,9 @@ export class AddressComponent implements OnInit {
   constructor(private modalService: MDBModalService,private commonservice:CommonService,public userservice:UserService,
     public restaurantservice:RestaurantService) {
       this.userdetails = this.userservice.userdeails;
+      this.commonservice.fetchaddress.subscribe(()=>{
+        this.getaddresses();
+      })
      }
 
   ngOnInit(): void {
@@ -24,14 +27,15 @@ export class AddressComponent implements OnInit {
 
   getaddresses(){
     if(this.userdetails){
-      // this.userdetails.userdetails.user_id
-    this.restaurantservice.getaddresses(2).subscribe((data)=>{
+    this.restaurantservice.getaddresses(this.userdetails.userdetails.user_id).subscribe((data)=>{
+      this.addresses = undefined;
       this.addresses = data;
     })
   }
   }
-  openAddAddressModal(val:string) {
+  openAddAddressModal(val:string,data:any) {
     this.commonservice.addressmode = val;
+    this.commonservice.editedobj = data;
     this.modalRef = this.modalService.show(AddaddressComponent,
       {
         backdrop: true,
@@ -45,5 +49,7 @@ export class AddressComponent implements OnInit {
 
       });
   }
-
+  setdeliveraddress(deliveraddress:any){
+    this.commonservice.deliveraddress = deliveraddress;
+  }
 }

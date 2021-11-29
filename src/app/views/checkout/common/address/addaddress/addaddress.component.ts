@@ -17,12 +17,8 @@ export class AddaddressComponent implements OnInit {
    userdetails:any;
    editedOBj:any;
   constructor(public  modalRef: MDBModalRef,private commonservice:CommonService,private formBuilder: FormBuilder,
-        private restaurantservice:RestaurantService,private userservice:UserService) { 
+     private restaurantservice:RestaurantService,private userservice:UserService) { 
      this.userdetails = this.userservice.userdeails; 
-    if(this.commonservice.addressmode == 'Edit'){
-      this.commonservice.editedobj
-      this.addressmode = true;
-    }
   }
 
   ngOnInit(): void {
@@ -36,6 +32,19 @@ export class AddaddressComponent implements OnInit {
       landmark: ['', Validators.required],
       addresstype:['',Validators.required]
     });
+    if(this.commonservice.addressmode == 'Edit'){
+      this.addressForm.setValue({
+        username : this.commonservice.editedobj.fname,
+        email :  this.commonservice.editedobj.email,
+        number :  this.commonservice.editedobj.mobileno,
+        address :  this.commonservice.editedobj.address,
+        aptno :  this.commonservice.editedobj.apartment_no,
+        postalcode :  this.commonservice.editedobj.pincode,
+        landmark :  this.commonservice.editedobj.landmark,
+        addresstype : "Home"
+      });
+      this.addressmode = true;
+    }
   }
 
   get f() { return this.addressForm.controls; }
@@ -52,30 +61,34 @@ export class AddaddressComponent implements OnInit {
         return;
     }
     var formData: any = new FormData();
-    formData.append('user_id',this.userdetails.userdeails.user_id);
-    formData.append('username',this.addressForm.value.username);
+    formData.append('user_id',this.userdetails.userdetails.user_id);
+    formData.append('fullname',this.addressForm.value.username);
     formData.append('email',this.addressForm.value.email);
-    formData.append('number',this.addressForm.value.number);
+    formData.append('mobileno',this.addressForm.value.number);
     formData.append('address',this.addressForm.value.address);
-    formData.append('title','New address');
-    formData.append('aptno',this.addressForm.value.aptno);
+    formData.append('apartment_no',this.addressForm.value.aptno);
     formData.append('landmark',this.addressForm.value.landmark);
     formData.append('addresstype',this.addressForm.value.addresstype);
+    formData.append('pincode',this.addressForm.value.postalcode);
+    formData.append('latitude','');
+    formData.append('longitude','');
     if(this.addressmode == false){
     this.restaurantservice.addaddress(formData).subscribe(res => {
       if(res && res.hasOwnProperty('userdetails')){
         // this.userservice.userdeails = res;
         // this.zone.run(() => {this.router.navigate(['/dashboards']); });
+        this.commonservice.getaddresschg();
         this.onReset();
         this.closeLoginModal();
       }
     })
   } else {
-    formData.append('id',this.editedOBj.id);
+    formData.append('id',this.commonservice.editedobj.id);
     this.restaurantservice.editaddress(formData).subscribe(res => {
       if(res && res.hasOwnProperty('userdetails')){
         // this.userservice.userdeails = res;
         // this.zone.run(() => {this.router.navigate(['/dashboards']); });
+        this.commonservice.getaddresschg();
         this.onReset();
         this.closeLoginModal();
       }

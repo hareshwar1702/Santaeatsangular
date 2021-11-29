@@ -12,6 +12,8 @@ import { RestaurantService } from '../../../service/restaurant.service';
 export class OutletsDetailsComponent implements OnInit {
   restaurantObj:any;
   subscription: Subscription;
+  searchvalue='';
+  foodtype = false;
   constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,
         public restaurantservice:RestaurantService) {
     this.restaurantObj = this.commonservice.restaurantObj;
@@ -26,6 +28,15 @@ export class OutletsDetailsComponent implements OnInit {
       this.commonservice.getrestomenu(data);
     });
   }
+  }
+
+  searchMenu(){
+    console.log(this.searchvalue);
+    this.commonservice.searchMenufun(this.searchvalue);
+  }
+  FoodTypecheck(){
+    this.foodtype = !this.foodtype;
+    this.commonservice.foodtypechange(this.foodtype);
   }
 
 }

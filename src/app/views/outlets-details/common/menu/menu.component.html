@@ -1,6 +1,6 @@
 <div class="card z-depth-1">
-    <ul class="list-group list-group-horizontal">
-        <li class="list-group-item _menu"><h4 class="font-weight-bold m-0">Menu</h4></li>
-        <li class="list-group-item" *ngFor="let menu of menus;let cardIndex = index" [ngClass]="{'active': cardIndex == index}" (click)="menuitemclick(menu,cardIndex)">{{menu.menu_name}}</li>
+    <ul class="list-group list-group-horizontal" id="myUL">
+        <div class="list-group-item _menu"><h4 class="font-weight-bold m-0">Menu</h4></div>
+        <li class="list-group-item" *ngFor="let menu of menus;let cardIndex = index" [ngClass]="{'active': cardIndex == index}" (click)="menuitemclick(menu,cardIndex)"><a>{{menu.category_name}}</a></li>
       </ul>
 </div>

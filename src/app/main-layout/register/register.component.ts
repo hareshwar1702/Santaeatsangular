@@ -47,9 +47,13 @@ export class RegisterComponent implements OnInit {
     formData1.append('reffralcode',this.registerForm.value.reffralcode);
     formData1.append('device_token',Math.random() + navigator.userAgent + Date() );
     this.userservice.register(formData1).subscribe(res => {
-      if(res && res.hasOwnProperty('userdetails')){
+      var response:any =  res;
+      if( response['message'] =="success" && response.hasOwnProperty('userdetails')){
+        this.userservice.userdeails = response;
         this.onReset();
         this.closeLoginModal();
+      } else {
+        alert("Please enter valid credentials!");
       }
     })
   }

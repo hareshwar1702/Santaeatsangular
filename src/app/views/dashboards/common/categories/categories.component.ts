@@ -28,8 +28,25 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getRestorantList(null);
+    this.getRestorantList(null);   
     this.getCategories();
+  }
+  fetchrestaurantList(data:any){  
+    this.restaurantService.getRestaurantList(data)
+    .subscribe(
+      (response) => {                           //Next callback
+        this.restorantList = undefined; 
+        const res: any = response;
+        this.restorantList = res.list;
+        this.commonservice.restorantList = res.list;
+      },
+      (error) => {                              //Error callback
+        console.error('Request failed with error')
+        alert(error);
+      },
+      () => {                                   //Complete callback
+        console.log('Request completed')
+      })
   }
   getCategories(){
     this.restaurantService.getCategories()

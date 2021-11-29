@@ -8,15 +8,15 @@
     <div class="row" *ngFor="let products of productsList;let cardIndex = index" >
 
       <!-- Grid column -->
-      <div class="col-md-3 col-4 p-0-8" *ngIf="products.id == menuid">
+      <div class="col-md-3 col-4 p-0-8"  *ngIf="products.menu_categoryid == menuid">
         <!--Image-->
-        <div class="view overlay rounded z-depth-1" *ngIf="products.category_img != ''">
-          <img class="img-fluid" [src]="products.category_img" alt="Sample image">
+        <div class="view overlay rounded z-depth-1" *ngIf="products.menu_logo != ''">
+          <img class="img-fluid" [src]="products.menu_logo" alt="Sample image">
           <a>
             <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
           </a>
         </div>
-        <div class="view overlay rounded z-depth-1" *ngIf="products.category_img == ''">
+        <div class="view overlay rounded z-depth-1" *ngIf="products.menu_logo == ''">
           <img class="img-fluid" src="https://santaeatsadmin.edigito.in/uploads/restaurant/20210913-0844PR_IMAGE_FINAL.jpg" alt="Sample image">
           <a>
             <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
@@ -27,11 +27,11 @@
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-9 col-8" *ngIf="products.id == menuid">
+      <div class="col-md-9 col-8" *ngIf="products.menu_categoryid == menuid">
         <!-- Excerpt -->
         <div class="font-weight-bold d-flex dark-grey-text cart-plus-minus">
             <div class="col-lg-11 col-10 text-truncate pl-0 mb-2">
-                <p class="font-weight-bold dark-grey-text mb-1">{{products.category_name}}</p>
+                <p class="font-weight-bold dark-grey-text mb-1">{{products.menu_name}}</p>
             </div>
             <a >
                 <span mdbWavesEffect class="badge red z-depth-1 text-white plus-minus"><mdb-icon fas icon="share-alt"></mdb-icon></span>
@@ -45,7 +45,7 @@
         </a>
         <div class="d-flex justify-content-between">
           <div class="col-lg-8 col-5 text-truncate pl-0 mb-2">
-            <a href="#!" class="dark-grey-text">£{{products.price}}</a>
+            <a href="#!" class="dark-grey-text">£{{products.menu_price}}</a>
           </div>
           <div class="col-lg-4 col-7 d-flex justify-content-between cart-plus-minus">
             <a>

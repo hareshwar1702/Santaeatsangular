@@ -53,10 +53,10 @@
             <div  *ngIf="products.count > 0">
               <dl class="row d-flex justify-content-between" style="border-bottom: 1px solid black;">
                   <dd class="col-sm-8 col-12"  >
-                    {{products.category_name}}
+                    {{products.menu_name}}
                   </dd>
                   <dd class="col-sm-4 col-6"  >
-                      $ {{products.price}}
+                      $ {{products.menu_price}}
                   </dd>
                   <dd class="col-sm-4 col-5 d-flex justify-content-between cart-plus-minus"  >
                       <a>
@@ -83,16 +83,16 @@
                     <dd class="col-sm-4 col-5 text-right">
                       $ {{totalprice}}
                     </dd>
-                    <dd class="col-sm-8 col-7">
+                    <dd class="col-sm-8 col-7" *ngIf="isHomeDelivery">
                         Service Charge
                       </dd>
-                      <dd class="col-sm-4 col-5 text-right">
+                      <dd class="col-sm-4 col-5 text-right" *ngIf="isHomeDelivery">
                         $ {{serviceCharge}}
                       </dd>
-                      <dd class="col-sm-8 col-7">
+                      <dd class="col-sm-8 col-7" *ngIf="isHomeDelivery">
                         Delivery Charge
                       </dd>
-                      <dd class="col-sm-4 col-5 text-right">
+                      <dd class="col-sm-4 col-5 text-right" *ngIf="isHomeDelivery">
                         $ {{deliveryCharge}}
                       </dd>
                   </dl>

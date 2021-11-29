@@ -40,10 +40,13 @@ export class LoginComponent implements OnInit {
     formData.append('password',this.loginForm.value.password);
 
     this.userservice.login(formData).subscribe(res => {
-      if(res && res.hasOwnProperty('userdetails')){
-        this.userservice.userdeails = res;
+      var response:any =  res;
+      if( response['message'] =="success" && response.hasOwnProperty('userdetails')){
+        this.userservice.userdeails = response;
         this.onReset();
         this.closeLoginModal();
+      } else {
+        alert("Please enter valid credentials!");
       }
     })
   }

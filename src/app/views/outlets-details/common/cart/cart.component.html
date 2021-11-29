@@ -4,7 +4,7 @@
         <mdb-card-header>
             <div class="clearfix">
                 <h4 class="h5 font-weight-bold float-left">Cart</h4>
-                <span class="float-right"><mdb-icon fas icon="trash-alt"></mdb-icon></span>
+                <span class="float-right"><mdb-icon fas icon="trash-alt"  (click)="deleteCard()"></mdb-icon></span>
               </div>
         </mdb-card-header>
       <!--Card content-->
@@ -12,10 +12,10 @@
         <div *ngFor="let products of checkoutarr;let cardIndex = index">
         <dl class="row d-flex justify-content-between borderbottom"  *ngIf="products.count > 0">
             <dd class="col-sm-8">
-                {{products.category_name}}
+                {{products.menu_name}}
             </dd>
             <dd class="col-sm-4">
-                $ {{products.price}}
+                $ {{products.menu_price}}
             </dd>
             <dd class="col-sm-6 d-flex justify-content-between cart-plus-minus">
                 <a>

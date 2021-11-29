@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { CommonService } from 'src/app/service/common.service';
 import { UserService } from '../../../../service/user.service';
 import {RestaurantService} from '../../../../service/restaurant.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delivery-details',
@@ -10,7 +11,6 @@ import {RestaurantService} from '../../../../service/restaurant.service';
 })
 export class DeliveryDetailsComponent implements OnInit {
   isHomeDelivery:boolean = true;
-  paymentHandler:any = null;
   checkoutarr:any;
   time = 0;
   date:Date;
@@ -22,17 +22,20 @@ export class DeliveryDetailsComponent implements OnInit {
    maxDate = new Date();
    minDate = new Date();
   @ViewChild('centralModalSm') centralModalSm: any;
-  constructor(private commonservice:CommonService,private userservice:UserService,public restaurantservice:RestaurantService) {
+  constructor(private commonservice:CommonService,private userservice:UserService,public restaurantservice:RestaurantService,
+    public zone: NgZone,public router: Router) {
     this.minDate.setDate(this.minDate.getDate() - 1);
     this.maxDate.setDate(this.maxDate.getDate() + 7);
     this.bsRangeValue = [this.bsValue, this.maxDate];
     this.totalamount = this.commonservice.finalcost;
     this.userdetails = this.userservice.userdeails;
     this.checkoutarr = this.commonservice.checkoutarr;
+    this.commonservice.deliverytype.subscribe(()=>{
+      this.isHomeDelivery = !this.isHomeDelivery;
+    })
    }
 
   ngOnInit(): void {
-    this.invokeStripe(); 
 
   }
  
@@ -44,95 +47,19 @@ export class DeliveryDetailsComponent implements OnInit {
     this.commonservice.deleverytypefunction(false);
     this.isHomeDelivery = false;
   }
-
-  makePayment(amount:number) {
-    if(this.date && this.time != 0){
-    const paymentHandler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_51HZakeG7964PNuDvKfjDJS4VzIHAn0AZkIL1KnM8PCCa74SJtn3HBUfG0guhn0vlJyCwfeB0eezzYgLvJ9uLPlA600YEjqWU7f',
-      locale: 'auto',
-      token: function (stripeToken: any) {
-        console.log(stripeToken)
-        alert('Stripe token generated!');
-        var formData: any = new FormData();
-        formData.append('order',this.checkoutarr);
-        formData.append('user_id',this.userdetails.userdetails.user_id);
-        formData.append('cart_subtotal',this.totalamount);
-        formData.append('total_cgst',2);
-        formData.append('total_sgst',5);
-        formData.append('payment_type',"Cash on delivery");
-        formData.append('delivery_address',"Pune");
-        formData.append('order_type',"takeout");
-        formData.append('charges',40);
-        formData.append('total',250);
-        formData.append('transaction_id','');
-        formData.append('easepayid','');
-        formData.append('discount_amount',0);
-        formData.append('coupon','');
-        formData.append('order_date',"21-08-2021");
-        formData.append('order_time',"20:46");
-        this.restaurantservice.saveorder(formData).subscribe((res:any)=>{
-          if(res['message'] == 'Order Saved.'){
-            alert("success!");
-          } else {
-            alert("fails!");
-          }
-        })
-      }
-    });
-  
-    paymentHandler.open({
-      name: 'Positronx',
-      description: '3 widgets',
-      amount: amount * 100
-    });
-  } else {
-    alert("Please select date and time First!");
-  }
-  }
-  savedetails(){
-    var formData: any = new FormData();
-    formData.append('order',this.checkoutarr);
-    formData.append('user_id',this.userdetails.userdetails.user_id);
-    formData.append('cart_subtotal',this.totalamount);
-    formData.append('total_cgst',2);
-    formData.append('total_sgst',5);
-    formData.append('payment_type',"Cash on delivery");
-    formData.append('delivery_address',"Pune");
-    formData.append('order_type',"takeout");
-    formData.append('charges',40);
-    formData.append('total',250);
-    formData.append('transaction_id','');
-    formData.append('easepayid','');
-    formData.append('discount_amount',0);
-    formData.append('coupon','');
-    formData.append('order_date',"21-08-2021");
-    formData.append('order_time',"20:46");
-    this.restaurantservice.saveorder(formData).subscribe((res:any)=>{
-      if(res['message'] == 'Order Saved.'){
-        alert("success!");
-      } else {
-        alert("fails!");
-      }
-    })
-  }
-  invokeStripe() {
-    if(!window.document.getElementById('stripe-script')) {
-      const script = window.document.createElement("script");
-      script.id = "stripe-script";
-      script.type = "text/javascript";
-      script.src = "https://checkout.stripe.com/checkout.js";
-      script.onload = () => {
-        this.paymentHandler = (<any>window).StripeCheckout.configure({
-          key: 'pk_test_51HZakeG7964PNuDvKfjDJS4VzIHAn0AZkIL1KnM8PCCa74SJtn3HBUfG0guhn0vlJyCwfeB0eezzYgLvJ9uLPlA600YEjqWU7f',
-          locale: 'auto',
-          token: function (stripeToken: any) {
-            console.log(stripeToken)
-            alert('Payment has been successfull!');
-          }
-        });
-      }
-        
-      window.document.body.appendChild(script);
+  makePayment(){
+    var deleveryaddress = this.commonservice.deliveraddress;
+    var pickUpdetails = this.commonservice.pickUpdetails;
+    if(this.date && this.time != 0 && deleveryaddress && this.isHomeDelivery){
+      this.commonservice.deliverydate = this.date;
+      this.commonservice.deliverytime = this.time;
+      this.zone.run(() => {this.router.navigate(['/checkout/payment-summary']); });
+    } else if(this.isHomeDelivery == false && pickUpdetails && this.date && this.time != 0){
+      this.zone.run(() => {this.router.navigate(['/checkout/payment-summary']); });
+    }else {
+      alert("Please select date and time First!");
     }
   }
+
+
 }

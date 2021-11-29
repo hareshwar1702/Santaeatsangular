@@ -5,13 +5,13 @@
           <div class="col-lg-6 col-sm-12">
               <label for="basic-url">Pick Up From</label>                  
               <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="time">
+                <input type="text" class="form-control" aria-label="time" [(ngModel)]="customerDetails.pickUpFrom" (change)="changepickUpFrom()">
               </div> 
           </div>
           <div class="col-lg-6 col-sm-12">
               <label for="basic-url">Name</label>                  
               <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="time">
+                <input type="text" class="form-control" aria-label="time" [(ngModel)]="customerDetails.name" (change)="changepickUpFrom()">
                 <div class="input-group-append" mdbWavesEffect>
                   <span class="input-group-text"><mdb-icon far icon="clock" red class="prefix"></mdb-icon></span>
                 </div>
@@ -33,13 +33,13 @@
                     </div>
                   </div>
                 </div>
-              <input type="text" class="form-control" aria-label="Text input with dropdown button">
+              <input type="number" class="form-control" aria-label="Text input with dropdown button" [(ngModel)]="customerDetails.number" (change)="changepickUpFrom()">
             </div> 
         </div>
         <div class="col-lg-6 col-sm-12">
             <label for="basic-url">Email</label>                  
             <div class="input-group mb-3">
-              <input type="email" class="form-control" aria-label="time">
+              <input type="email" class="form-control" aria-label="time" [(ngModel)]="customerDetails.email" (change)="changepickUpFrom()">
             </div> 
         </div>
       </div>

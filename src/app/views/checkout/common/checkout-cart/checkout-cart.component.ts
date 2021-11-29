@@ -14,6 +14,7 @@ export class CheckoutCartComponent implements OnInit {
   deliveryCharge:any = 50;
   total:any = 0;
   restaurantObj:any;
+  isHomeDelivery:boolean = true;
   constructor(private commonservice:CommonService,public zone: NgZone,public router: Router) {
     this.productlist = this.commonservice.productsList;
     this.restaurantObj = this.commonservice.restaurantObj;
@@ -26,21 +27,27 @@ export class CheckoutCartComponent implements OnInit {
       this.productlist = this.commonservice.productsList;
       for(let i =0;i<  this.productlist.length;i++){
         if(this.productlist[i]['count'] > 0){
-          this.totalprice = this.totalprice + (this.productlist[i]['price']*this.productlist[i]['count']);
+          this.totalprice = this.totalprice + (this.productlist[i]['menu_price']*this.productlist[i]['count']);
           this.commonservice.totalprice = this.totalprice;
-          this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+          if( this.isHomeDelivery){
+            this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+          }
           this.commonservice.finalcost = this.total;
         }
       }
     });
     this.commonservice.deliverytype.subscribe((val)=>{
+      this.isHomeDelivery = !this.isHomeDelivery;
       if(val == true){
         this.serviceCharge = 50;
         this.deliveryCharge = 50;
+        this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
       } else {
         this.serviceCharge = 0;
         this.deliveryCharge = 0;
+        this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
       }
+
     })
    }
 

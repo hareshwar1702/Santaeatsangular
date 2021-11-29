@@ -19,11 +19,16 @@ export class NavigationComponent implements OnInit {
   latitude:number;
   longitude:number;
   userobj:any;
+  deliverytype:boolean = true;
   constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService,
        public commonService : CommonService,public userservice:UserService) {
     this.clicked = this.clicked === undefined ? false : true;
     this.userservice.loginchange.subscribe(()=>{
       this.userobj = this.userservice.userdeails;
+    })
+    this.commonService.deliverytype.subscribe(()=>{
+      this.deliverytype = !this.deliverytype;
+      document.getElementById('deliverytype')?.click();
     })
   }
 
@@ -32,6 +37,11 @@ export class NavigationComponent implements OnInit {
       subscriptionFormModalName: new FormControl('', Validators.required),
       subscriptionFormModalEmail: new FormControl('', Validators.email)
     });
+    // this.getlatlong();
+  }
+  changedeliverytype(){
+    this.deliverytype = !this.deliverytype;
+    this.commonService.deleverytypefunction(this.deliverytype);
   }
   // openModal() {
   //   this.modalRef = this.modalService.show(LoginComponent);
@@ -62,9 +72,18 @@ export class NavigationComponent implements OnInit {
       });
   }
 
-  getlatlong(){
-    console.log("hello");
-  }
+  // getlatlong(){
+  //   var abc = new google.maps.Geocoder();
+  //   abc.geocode( { 'address': "pune"}, function(results, status) {
+
+  //     if (status == google.maps.GeocoderStatus.OK) {
+  //         var latitude = results[0].geometry.location.lat();
+  //         var longitude = results[0].geometry.location.lng();
+  //         console.log(latitude, longitude);
+  //         } 
+  //     }); 
+  // }
+ 
   getmyAddress(){
     this.getLocation().then((res)=>{
       this.restaurantservice.getaddress(res).subscribe((data:any) =>{

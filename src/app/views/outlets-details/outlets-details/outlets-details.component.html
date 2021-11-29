@@ -66,18 +66,20 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 m-auto">
+        <div class="col-md-4 m-auto">
             <div class="input-group mb-3 _filter">
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Search Menu" [(ngModel)]="searchvalue" (keyup)="searchMenu($event)" aria-label="Username" aria-describedby="basic-addon1">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
                         <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
                     </span>
                   </div>
+                  <div class="input-group-prepend">
+                    <input class="form-check-input" type="checkbox" id="Vegetarian" name="Vegetarian" value="Vegetarian" (click)="FoodTypecheck()">
+                    <label for="Vegetarian">Vegetarian</label>
+                  </div>
                   
-              </div>
-
-
+              </div> 
         </div>
     </div>
 </div>
