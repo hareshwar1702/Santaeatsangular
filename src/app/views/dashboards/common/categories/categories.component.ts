@@ -10,10 +10,9 @@ export class CategoriesComponent implements OnInit {
   public restorantList: any = [];
   categories:any;
   start:number = 0;
-  end:number = 7;
+  end:number = 9;
   constructor(private restaurantService: RestaurantService,private commonservice:CommonService) {
     this.commonservice.latlogtrigger.subscribe((data) => {
-      console.log(data);
       this.getRestorantList(data);
     })
    }
@@ -52,13 +51,17 @@ export class CategoriesComponent implements OnInit {
     this.restaurantService.getCategories()
       .subscribe(
         (response) => {                           //Next callback
-          console.log('response received')
-          console.log(JSON.stringify(response));
-
           const res: any = response;
-
           this.cards = res.data;
-          this.slides = this.chunk(this.cards, 12);
+          var temps =[];
+          for(var i = this.start;i<=this.end -1;i++){
+            if(i<= this.cards.length){
+            temps.push(this.cards[i]);
+            if(i == this.end -1 || i == this.cards.length){
+              this.slides = this.chunk(temps, 9);
+            }
+          }
+          }
         },
         (error) => {                              //Error callback
           console.error('Request failed with error')
@@ -76,13 +79,13 @@ export class CategoriesComponent implements OnInit {
       if(this.start >=0){
       temps = [];
       if(this.start != 0){
-      this.start = this.start - 8;
-      this.end = this.end - 8;
+      this.start = this.start - 9;
+      this.end = this.end - 9;
       }
       for(var i = this.start;i<=this.end;i++){
         temps.push(this.cards[i]);
         if(i == this.end){
-          this.slides = this.chunk(temps, 8);
+          this.slides = this.chunk(temps, 9);
         }
       }
      }
@@ -90,14 +93,14 @@ export class CategoriesComponent implements OnInit {
        if(this.start <= this.cards.length){
       temps = [];
       if(this.end <= this.cards.length){
-      this.start = this.start + 8;
-      this.end = this.end + 8;
+      this.start = this.start + 9;
+      this.end = this.end + 9;
       }
       for(var i = this.start;i<=this.end;i++){
         if(i<= this.cards.length){
         temps.push(this.cards[i]);
         if(i == this.end || i == this.cards.length -1){
-          this.slides = this.chunk(temps, 8);
+          this.slides = this.chunk(temps, 9);
         }
       }
       }

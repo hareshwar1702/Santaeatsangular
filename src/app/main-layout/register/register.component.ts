@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false; 
+  reffralcode='';
   constructor(private modalService: MDBModalService,private formBuilder: FormBuilder,public zone: NgZone,
     public userservice:UserService,public router: Router,public  modalRef: MDBModalRef) { }
 
@@ -22,8 +24,7 @@ export class RegisterComponent implements OnInit {
       mobileno: ['', Validators.required],
       fname: ['', Validators.required],
       email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required],
-      reffralcode: ['', Validators.required]
+      password: ['', Validators.required]
     });
   }
 
@@ -31,6 +32,7 @@ export class RegisterComponent implements OnInit {
 
   onReset() {
     this.submitted = false;
+    this.reffralcode='';
     this.registerForm.reset();
   }
   onSubmit() {
@@ -44,20 +46,22 @@ export class RegisterComponent implements OnInit {
     formData1.append('fname',this.registerForm.value.fname);
     formData1.append('email',this.registerForm.value.email);
     formData1.append('password',this.registerForm.value.password);
-    formData1.append('reffralcode',this.registerForm.value.reffralcode);
+    formData1.append('reffralcode',this.reffralcode);
     formData1.append('device_token',Math.random() + navigator.userAgent + Date() );
     this.userservice.register(formData1).subscribe(res => {
       var response:any =  res;
-      if( response['message'] =="success" && response.hasOwnProperty('userdetails')){
-        this.userservice.userdeails = response;
+      if( response['message'] =="User Registered."){
+        // this.userservice.userdeails = response;
         this.onReset();
-        this.closeLoginModal();
+        // this.closeLoginModal();
+        this.openLoginModal();
       } else {
         alert("Please enter valid credentials!");
       }
     })
   }
   openLoginModal() {
+    this.closeLoginModal();
     this.modalRef = this.modalService.show(LoginComponent,
       {
         backdrop: true,
@@ -76,4 +80,5 @@ export class RegisterComponent implements OnInit {
     this.userservice.closefunction();
     this.modalRef.hide();
   }
+ 
 }
