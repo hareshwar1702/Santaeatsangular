@@ -1,7 +1,8 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, HostListener, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/service/common.service';
 import { RestaurantService } from '../../../service/restaurant.service';
+import { UserService } from '../../../service/user.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class CheckoutDetailsComponent implements OnInit {
   subtotal:any;
   categories=[] as any;
   menu=[] as any;
-  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,public restaurantservice:RestaurantService) { 
+  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,
+    public restaurantservice:RestaurantService,public userService: UserService) { 
     this.totalprice = this.commonservice.totalprice;
     this.restaurantObj = this.commonservice.restaurantObj;
     this.checkoutarr = this.commonservice.checkoutarr;
@@ -42,9 +44,17 @@ export class CheckoutDetailsComponent implements OnInit {
     this.couponlist();
     this.discountcoupon();
   }
+
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    if(this.userService.userdeails != undefined){
+    localStorage.setItem('userinfo', JSON.stringify(this.userService.userdeails));
+    }
+    // Do more processing...
+    event.returnValue = false;
+   }
+   
   couponlist(){
      this.restaurantservice.couponList(this.restaurantObj['restaurant_id']).subscribe(res=>{
-       console.log(res);
         this.commonservice.couponlist = res;
      })
   }

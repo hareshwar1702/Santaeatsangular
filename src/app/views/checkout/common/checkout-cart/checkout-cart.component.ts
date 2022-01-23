@@ -38,7 +38,7 @@ export class CheckoutCartComponent implements OnInit {
     });
     this.commonservice.deliverytype.subscribe((val)=>{
       this.isHomeDelivery = !this.isHomeDelivery;
-      if(val == true){
+      if( val == true){
         this.serviceCharge = 50;
         this.deliveryCharge = 50;
         this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
@@ -47,7 +47,6 @@ export class CheckoutCartComponent implements OnInit {
         this.deliveryCharge = 0;
         this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
       }
-
     })
    }
 

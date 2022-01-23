@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, HostListener, OnInit } from '@angular/core';
+import {UserService} from '../../../service/user.service';
 @Component({
   selector: 'app-dashboard1',
   templateUrl: './dashboard1.component.html',
   styleUrls: ['./dashboard1.component.scss']
 })
 export class Dashboard1Component implements OnInit {
-
+  userobject:any;
   public map: any = { lat: 51.678418, lng: 7.809007 };
   public chart1Type:string = 'bar';
   public chart2Type:string = 'pie';
@@ -55,10 +55,23 @@ export class Dashboard1Component implements OnInit {
     }
   };
 
-  constructor() {
-  
+  constructor(public userService : UserService) {
+    var obj:any = localStorage.getItem('userinfo');
+    this.userobject = JSON.parse(obj);
+    if(this.userobject != null){
+    this.userService.userdeails = this.userobject;
+    this.userService.closefunction();
+    localStorage.removeItem("userinfo");
+    }
   }
 
+  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    if(this.userService.userdeails != undefined){
+    localStorage.setItem('userinfo', JSON.stringify(this.userService.userdeails));
+    }
+    // Do more processing...
+    event.returnValue = false;
+   }
   ngOnInit() {
   }
 

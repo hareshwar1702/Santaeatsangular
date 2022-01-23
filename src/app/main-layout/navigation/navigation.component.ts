@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { MDBModalRef,MDBModalService } from 'angular-bootstrap-md';
 import { LoginComponent } from '../login/login.component';
 import { RestaurantService } from '../../service/restaurant.service';
 import { CommonService } from '../../service/common.service';
 import { UserService } from '../../service/user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -19,15 +20,16 @@ export class NavigationComponent implements OnInit {
   latitude:number;
   longitude:number;
   userobj:any;
+  restaurantObj:any;
   deliverytype:boolean = true;
   constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService,
-       public commonService : CommonService,public userservice:UserService) {
+       public commonService : CommonService,public userservice:UserService,public zone: NgZone,public router: Router,) {
     this.clicked = this.clicked === undefined ? false : true;
     this.userservice.loginchange.subscribe(()=>{
       this.userobj = this.userservice.userdeails;
     })
-    this.commonService.deliverytype.subscribe(()=>{
-      this.deliverytype = !this.deliverytype;
+    this.commonService.deliverytype.subscribe((val)=>{
+      this.deliverytype = val;
       document.getElementById('deliverytype')?.click();
     })
   }
@@ -141,6 +143,11 @@ export class NavigationComponent implements OnInit {
 
   }
 
+  logout(){
+    this.userobj = undefined;
+    this.userservice.userdeails = undefined;
+      this.zone.run(() => {this.router.navigate(['/dashboards']); });
+  }
   
  
 }

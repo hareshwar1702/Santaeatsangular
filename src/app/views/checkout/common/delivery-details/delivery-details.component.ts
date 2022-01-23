@@ -56,7 +56,9 @@ export class DeliveryDetailsComponent implements OnInit {
       this.zone.run(() => {this.router.navigate(['/checkout/payment-summary']); });
     } else if(this.isHomeDelivery == false && pickUpdetails && this.date && this.time != 0){
       this.zone.run(() => {this.router.navigate(['/checkout/payment-summary']); });
-    }else {
+    }else if(deleveryaddress == undefined) {
+      alert('Please select delivery adderss.(Click on DELIVER HERE Button)')
+    } else{
       alert("Please select date and time First!");
     }
   }

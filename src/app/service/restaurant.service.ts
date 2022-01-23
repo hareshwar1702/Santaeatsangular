@@ -51,7 +51,7 @@ export class RestaurantService {
   descountcoupon(data:FormData){
     return this.http.post(this.url+"/discount_coupon",data);
   }
-  // taxes(){
-  //   return this.http.get(this.url+"/tax");
-  // }
+  taxes(){
+    return this.http.get(this.url+"/tax");
+  }
 }

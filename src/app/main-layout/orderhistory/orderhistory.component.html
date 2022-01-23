@@ -1,21 +1,12 @@
-<div class="row" *ngFor="let order of orderHistory.data;let cardIndex = index">
-    <div class="col-md-1">orderid:-<span>{{order.order_id}}</span></div>
-    <div class="col-md-2">subtotal:-<span>{{order.subtotal}}</span></div>
-    <div class="col-md-1">sgst:-<span>{{order.sgst}}</span></div>
-    <div class="col-md-1">cgst:-<span>{{order.cgst}}</span></div>
-    <div class="col-md-3">to delivery address:-<span>{{order.to_delivery_address}}</span></div>
-    <div class="col-md-2">order date:-<span>{{order.order_date}}</span></div>
-    <div class="col-md-2">order_status:-<span>{{order.order_status}}</span></div>
-</div> 
-<div class="single-news" >
+<div class="single-news" *ngFor="let order of orderHistory.data;let cardIndex = index">
 
     <!-- Grid row -->
-    <div class="row" style="margin-top: 6rem;padding: 14px;">
+    <div class="row" style="margin-top: 1rem;padding: 14px;" *ngFor="let data of order.menus;let cardIndex1 = index">
 
       <!-- Grid column -->
-      <div class="col-md-3 col-4 p-0-8">
+      <div class="col-md-3 col-4 p-0-8" >
         <div class="view overlay rounded z-depth-1">
-          <img class="img-fluid" src="https://santaeatsadmin.edigito.in/uploads/restaurant/20210913-0844PR_IMAGE_FINAL.jpg" alt="Sample image">
+          <img class="img-fluid" style="height: 150px;" src="{{data.menu_logo}}" alt="Sample image">
           <a>
             <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
           </a>
@@ -25,19 +16,24 @@
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-9 col-8">
+      <div class="col-md-9 col-8" >
         <!-- Excerpt -->
         <div class="font-weight-bold d-flex dark-grey-text cart-plus-minus">
             <div class="col-lg-11 col-10 text-truncate pl-0 mb-2">
-                <p class="font-weight-bold dark-grey-text mb-1">product name</p>
+                <p class="font-weight-bold dark-grey-text mb-1">{{data.menu_name}}</p>
             </div>
         </div>
        
         <a href="#!" class="red-text">
             <h6 class="font-weight-bold mb-3">
-                <small class="text-muted">products.category</small>
+                <small class="text-muted">{{data.menu_variation}}</small>
             </h6>
         </a>
+        <a href="#!" class="red-text">
+          <h6 class="font-weight-bold mb-3">
+              <small class="text-muted">{{data.menu_price}}</small>
+          </h6>
+      </a>
 
       </div>
       <!-- Grid column -->

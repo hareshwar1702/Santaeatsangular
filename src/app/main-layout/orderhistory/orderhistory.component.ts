@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, HostListener, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestaurantService } from '../../service/restaurant.service';
 import {UserService} from '../../service/user.service';
@@ -17,8 +17,13 @@ export class OrderhistoryComponent implements OnInit {
     }
    }
 
+   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+    localStorage.setItem('userinfo', JSON.stringify(this.userdetails));
+    // Do more processing...
+    event.returnValue = false;
+   }
   ngOnInit(): void {
-    this.resauranthistory.getorderhistory(this.userdetails.userdeails.user_id).subscribe(res =>{
+    this.resauranthistory.getorderhistory(this.userdetails.userdetails.user_id).subscribe(res =>{
       this.orderHistory = res;
     })
   }
