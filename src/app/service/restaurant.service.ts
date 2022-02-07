@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RestaurantService {
-  url = 'https://santaeatsapi.edigito.in';
+  url = 'http://api.foodbahok.com';
 
   constructor(private http: HttpClient) { }
 
