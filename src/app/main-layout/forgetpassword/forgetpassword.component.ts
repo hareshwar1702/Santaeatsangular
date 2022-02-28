@@ -6,13 +6,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/service/common.service';
-import { ForgetpasswordComponent} from '../forgetpassword/forgetpassword.component';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-forgetpassword',
+  templateUrl: './forgetpassword.component.html',
+  styleUrls: ['./forgetpassword.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class ForgetpasswordComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   constructor(private modalService: MDBModalService,private formBuilder: FormBuilder,public zone: NgZone,
@@ -40,9 +39,9 @@ export class LoginComponent implements OnInit {
     formData.append('username',this.loginForm.value.username);
     formData.append('password',this.loginForm.value.password);
 
-    this.userservice.login(formData).subscribe(res => {
+    this.userservice.changepassword(formData).subscribe(res => {
       var response:any =  res;
-      if( response['message'] =="success" && response.hasOwnProperty('userdetails')){
+      if( response['message'] =="Password Changed Successfully!!" ){
         this.userservice.userdeails = response;
         this.onReset();
         this.closeLoginModal();
@@ -72,20 +71,4 @@ export class LoginComponent implements OnInit {
       this.modalRef.hide();
   }
 
-
-  openForgetModal() {
-    this.closeLoginModal();
-    this.modalRef = this.modalService.show(ForgetpasswordComponent,
-      {
-        backdrop: true,
-        keyboard: true,
-        focus: true,
-        show: false,
-        ignoreBackdropClick: false,
-        class: 'form-elegant',
-        containerClass: 'top',
-        animated: true
-
-      });
-  }
 }

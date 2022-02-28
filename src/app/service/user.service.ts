@@ -6,17 +6,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   userdeails:any;
+  url = 'http://api.foodbahok.com';
   loginchange = new EventEmitter();
   constructor(public httpclient: HttpClient) { }
 
   login(val:FormData){
-    return this.httpclient.post("https://santaeatsapi.edigito.in/login",val);
+    return this.httpclient.post(this.url+'/login',val);
   }
 
   register(val:FormData){
-    return this.httpclient.post("https://santaeatsapi.edigito.in/sign-up",val);
+    return this.httpclient.post(this.url+'/sign-up',val);
   }
   closefunction(){
     this.loginchange.emit();
+  }
+  changepassword(val:FormData){
+    return this.httpclient.post(this.url+'/change-password',val);
   }
 }

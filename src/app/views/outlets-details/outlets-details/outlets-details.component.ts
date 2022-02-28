@@ -29,6 +29,7 @@ export class OutletsDetailsComponent implements OnInit {
       this.commonservice.getrestomenu(data);
     });
   }
+  console.log(this.restaurantObj);
   }
 
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
@@ -45,6 +46,14 @@ export class OutletsDetailsComponent implements OnInit {
   FoodTypecheck(){
     this.foodtype = !this.foodtype;
     this.commonservice.foodtypechange(this.foodtype);
+  }
+  createRange(data:any){
+    var item = Number(data);
+    var items: number[] = [];
+    for(var i = 1; i <= item; i++){
+      items.push(i);
+    }
+    return items;
   }
 
 }

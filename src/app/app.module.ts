@@ -33,6 +33,7 @@ import { RegisterComponent } from './main-layout/register/register.component';
 import { CheckoutDetailsComponent } from './views/checkout/checkout-details/checkout-details.component';
 import { OrderhistoryComponent } from './main-layout/orderhistory/orderhistory.component';
 import { PaymentSummaryComponent } from './views/checkout/payment-summary/payment-summary.component';
+import { ForgetpasswordComponent } from './main-layout/forgetpassword/forgetpassword.component';
 // import { BannerCarouselComponent } from './main-layout/banner-carousel/banner-carousel.component';
 
 const routes: Route[] = [
@@ -92,6 +93,7 @@ const routes: Route[] = [
     LoginComponent,
     RegisterComponent,
     OrderhistoryComponent,
+    ForgetpasswordComponent,
     // DatepickerModule.forRoot(),
     // TimepickerModule.forRoot(),
     // DatetimePopupModule.forRoot()
@@ -116,7 +118,7 @@ const routes: Route[] = [
     NgxStripeModule.forRoot('pk_test_51Jq05JSFO2k4lj9j8r9TeyYlzrmh1aDD7XmZcVjFR8ZykCIyLSxdsT1DNBdMeQA1fNytJKbagcKYrfg1Wr5Kg64S00CqS8PQjO')
     
   ],
-  entryComponents: [ LoginComponent],
+  entryComponents: [ LoginComponent,],
   
   providers: [],
   bootstrap: [AppComponent],

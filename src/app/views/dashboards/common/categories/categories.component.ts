@@ -133,5 +133,13 @@ export class CategoriesComponent implements OnInit {
     console.log(data);
     this.commonservice.restaurantObj = data;
   }
+  createRange(data:any){
+    var item = Number(data);
+    var items: number[] = [];
+    for(var i = 1; i <= item; i++){
+      items.push(i);
+    }
+    return items;
+  }
 
 }

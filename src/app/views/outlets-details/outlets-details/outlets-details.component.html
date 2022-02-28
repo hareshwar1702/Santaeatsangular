@@ -38,10 +38,15 @@
                         </h6>
                     </a>
                   <!-- <p> <small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    <a href="#!" class="yellow-text ">
+                        <h6 class="font-weight-bold mb-3 rating">
+                            <mdb-icon fas icon="star"  *ngFor="let item of createRange(restaurantObj.rating);" class="pr-2 yellow-text " size="lg"></mdb-icon>
+                            <!-- <small class="text-muted">Rating :- {{restaurantObj.rating}}</small> -->
+                        </h6>
+                    </a>
                     <a href="#!" class="yellow-text">
                         <h6 class="font-weight-bold mb-3">
-                            <mdb-icon fas icon="star" class="pr-2" size="lg"></mdb-icon>
-                            <small class="text-muted">Rate Now</small>
+                            <small class="text-muted">  Open :- {{restaurantObj.open_time}}  Close :- {{restaurantObj.close_time}}</small>
                         </h6>
                     </a>
                     <!-- Post data -->

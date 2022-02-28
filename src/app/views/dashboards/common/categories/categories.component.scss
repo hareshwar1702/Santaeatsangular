@@ -29,6 +29,10 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
 .collection-card .stripe.dark a p {
     color: #eee;
 }
+.rating{
+    height: 20px;
+    overflow: hidden;
+}
 
 .categories{
     height: 200px;

@@ -49,8 +49,8 @@
     <!--Card-->
 <mdb-card class="mobile-cart d-lg-none d-md-none">
 <div class="d-flex clearfix">
-      <button class="clearfix px-3 float-left" mdbBtn type="button" color="red" block="true" mdbWavesEffect>
-        <span class="float-left">10 Items in cart</span>  <span class="float-right">£ 90.85</span>
+      <button class="clearfix px-3 float-left" mdbBtn type="button" color="red" block="true" mdbWavesEffect (click)="checkOut()">
+        <span class="float-left">{{checkoutarr.length}} Items in cart</span>  <span class="float-right">£ {{totalprice}}</span>
     </button>
     <!-- <button class="clearfix px-3" mdbBtn type="button" color="red" block="true" mdbWavesEffect style="background-color: #ed4134!important;" >
         Checkout

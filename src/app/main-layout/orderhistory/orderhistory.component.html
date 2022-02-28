@@ -1,3 +1,4 @@
+<div *ngIf="orderHistoryNumber != 0 ">
 <div class="single-news" *ngFor="let order of orderHistory.data;let cardIndex = index">
 
     <!-- Grid row -->
@@ -42,3 +43,7 @@
     <!-- Grid row -->
 
   </div>
+</div>
+<div class="single-news" *ngIf="orderHistoryNumber == 0 ">
+  <h4>Order history not available</h4>
+</div>

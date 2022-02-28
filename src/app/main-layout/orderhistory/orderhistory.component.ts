@@ -10,6 +10,7 @@ import {UserService} from '../../service/user.service';
 export class OrderhistoryComponent implements OnInit {
   orderHistory:any;
   userdetails:any;
+  orderHistoryNumber = 0;
   constructor(private resauranthistory:RestaurantService,private userservice:UserService,public zone: NgZone,public router: Router) {
     this.userdetails = this.userservice.userdeails;
     if(!this.userdetails){
@@ -25,6 +26,7 @@ export class OrderhistoryComponent implements OnInit {
   ngOnInit(): void {
     this.resauranthistory.getorderhistory(this.userdetails.userdetails.user_id).subscribe(res =>{
       this.orderHistory = res;
+      this.orderHistoryNumber = this.orderHistory.data.length;
     })
   }
 
