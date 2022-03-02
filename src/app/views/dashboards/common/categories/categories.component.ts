@@ -30,6 +30,10 @@ export class CategoriesComponent implements OnInit {
     this.getRestorantList(null);   
     this.getCategories();
   }
+  changerestoList(data:any){
+    console.log(data);
+    this.commonservice.latlogtrigerchange(data.latitude,data.longitude);
+  }
   fetchrestaurantList(data:any){  
     this.restaurantService.getRestaurantList(data)
     .subscribe(

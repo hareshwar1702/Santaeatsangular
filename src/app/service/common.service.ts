@@ -12,6 +12,7 @@ export class CommonService {
   searchMenu = new EventEmitter();
   fetchaddress = new EventEmitter();
   foodtype = new EventEmitter();
+  
   categories:any;
   editedobj:any;
   restorantList:any;
@@ -30,6 +31,7 @@ export class CommonService {
   deliverydate:any;
   deliverytime:any;
   pickUpdetails:any;
+  searchlatlong:any;
   constructor() { }
   
   latlogtrigerchange(lat:Number,long:Number){

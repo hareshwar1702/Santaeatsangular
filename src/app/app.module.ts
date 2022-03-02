@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Route } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -101,7 +100,7 @@ const routes: Route[] = [
   ],
   imports: [
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyCEUpMCzyUSq20aQbmtH90UvrQZUvGyQkg'
     }),
     BrowserModule,
     HttpClientModule,

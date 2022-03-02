@@ -20,7 +20,7 @@
             </div>
             <ul class="list-group list-group-horizontal" *ngFor="let item of slides; let i = index" style="width: 100%;overflow:auto;">
                 <li class="list-group-item" *ngFor="let card of item; let cardIndex = index">
-                    <div class="my-1 _img" (click)="fetchrestaurantList(card)">
+                    <div class="my-1 _img" (click)="changerestoList(card)">
                         <img clss="cat-img zoom" [src]="card.pcategory_img" alt="Card image cap"/>
                     </div>
                     <a href="#" color="primary" class="waves-light" mdbWavesEffect>{{card.pcategory_name}}</a>

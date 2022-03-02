@@ -6,6 +6,7 @@ import { RestaurantService } from '../../service/restaurant.service';
 import { CommonService } from '../../service/common.service';
 import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
+import { ForgetpasswordComponent} from '../forgetpassword/forgetpassword.component';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -22,6 +23,8 @@ export class NavigationComponent implements OnInit {
   userobj:any;
   restaurantObj:any;
   deliverytype:boolean = true;
+  geocoder: any;
+
   constructor(private modalService: MDBModalService,public restaurantservice : RestaurantService,
        public commonService : CommonService,public userservice:UserService,public zone: NgZone,public router: Router,) {
     this.clicked = this.clicked === undefined ? false : true;
@@ -39,15 +42,11 @@ export class NavigationComponent implements OnInit {
       subscriptionFormModalName: new FormControl('', Validators.required),
       subscriptionFormModalEmail: new FormControl('', Validators.email)
     });
-    // this.getlatlong();
   }
   changedeliverytype(){
     this.deliverytype = !this.deliverytype;
     this.commonService.deleverytypefunction(this.deliverytype);
   }
-  // openModal() {
-  //   this.modalRef = this.modalService.show(LoginComponent);
-  // }
 
   get subscriptionFormModalName() {
     return this.validatingForm.get('subscriptionFormModalName');
@@ -74,62 +73,47 @@ export class NavigationComponent implements OnInit {
       });
   }
 
-  // getlatlong(){
-  //   var abc = new google.maps.Geocoder();
-  //   abc.geocode( { 'address': "pune"}, function(results, status) {
-
-  //     if (status == google.maps.GeocoderStatus.OK) {
-  //         var latitude = results[0].geometry.location.lat();
-  //         var longitude = results[0].geometry.location.lng();
-  //         console.log(latitude, longitude);
-  //         } 
-  //     }); 
-  // }
- 
+  getlatlong(){
+    this.geocoder = new google.maps.Geocoder();
+    this.geocoder.geocode({'address': this.locationName}, (results:any, status:any) => {
+      if (status == google.maps.GeocoderStatus.OK) {
+        this.commonService.searchlatlong = {'lat':results[0].geometry.location.lat(),'long':results[0].geometry.location.lng()}
+        this.commonService.latlogtrigerchange(results[0].geometry.location.lat(),results[0].geometry.location.lng());
+      } else {
+          console.log('Error - ', results, ' & Status - ', status);
+      }
+    });
+  }
+  changePassword(){
+      this.modalRef = this.modalService.show(ForgetpasswordComponent,
+        {
+          backdrop: true,
+          keyboard: true,
+          focus: true,
+          show: false,
+          ignoreBackdropClick: false,
+          class: 'form-elegant',
+          containerClass: 'top',
+          animated: true
+  
+        });
+  }
   getmyAddress(){
     this.getLocation().then((res)=>{
       this.restaurantservice.getaddress(res).subscribe((data:any) =>{
        for(var i=0;i< data.results.length;i++){
         if(data.results[i].geometry.location.lat == res[0] && data.results[i].geometry.location.lng == res[1]){
           this.locationName = data.results[i].formatted_address;
+          this.commonService.searchlatlong = {'lat':data.results[i].geometry.location.lat,'long': data.results[i].geometry.location.lng};
+          this.commonService.latlogtrigerchange(data.results[i].geometry.location.lat,data.results[i].geometry.location.lng);
         }
        }
       });
-    //   return new Promise(function (resolve, reject) {
-    //     var request = new XMLHttpRequest();
-
-    //     var method = 'GET';
-    //     var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + res[0] + ',' + res[1] + '&sensor=true';
-    //     var async = true;
-
-    //     request.open(method, url, async);
-    //     request.onreadystatechange = function () {
-    //         if (request.readyState == 4) {
-    //             if (request.status == 200) {
-    //                 var data = JSON.parse(request.responseText);
-    //                 var address = data.results[0];
-    //                 resolve(address);
-    //             }
-    //             else {
-    //                 reject(request.status);
-    //             }
-    //         }
-    //     };
-    //     request.send();
-    // });
     })
   }
   getLocation(): Promise<string[]> {
         return new Promise<string[]>((resolve, reject) => {
         if (navigator.geolocation){
-        //   navigator.geolocation.getCurrentPosition(function(pos) {
-        //    console.log("Latitude: " + pos.coords.latitude +
-        //       "Longitude: " + pos.coords.longitude);
-        //     sessionStorage.setItem('Latitude',pos.coords.latitude.toString());
-        //     sessionStorage.setItem('Longitude',pos.coords.longitude.toString());
-        //     resolve([ coords[0].toString(), coords[1].toString() ]);
-        //   })
-
           navigator.geolocation.getCurrentPosition(pos => {
             this.commonService.latlogtrigerchange(pos.coords.latitude, pos.coords.longitude);
             resolve([pos.coords.latitude.toString(), pos.coords.longitude.toString() ]);

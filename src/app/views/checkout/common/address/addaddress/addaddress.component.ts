@@ -16,6 +16,7 @@ export class AddaddressComponent implements OnInit {
    addresstype = 'Home';
    userdetails:any;
    editedOBj:any;
+   geocoder: any;
   constructor(public  modalRef: MDBModalRef,private commonservice:CommonService,private formBuilder: FormBuilder,
      private restaurantservice:RestaurantService,private userservice:UserService) { 
      this.userdetails = this.userservice.userdeails; 
@@ -55,7 +56,17 @@ export class AddaddressComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
+    this.geocoder = new google.maps.Geocoder();
+    var lat:Number = 0;
+    var long:Number = 0; 
+    this.geocoder.geocode({'address': this.addressForm.value.aptno+','+this.addressForm.value.address+','+this.addressForm.value.postalcode}, (results:any, status:any) => {
+      if (status == google.maps.GeocoderStatus.OK) {
+        lat = results[0].geometry.location.lat();
+        long =  results[0].geometry.location.lng();
+   } else {
+          console.log('Error - ', results, ' & Status - ', status);
+      }
+    });
     // stop here if form is invalid
     if (this.addressForm.invalid) {
         return;
@@ -70,8 +81,8 @@ export class AddaddressComponent implements OnInit {
     formData.append('landmark',this.addressForm.value.landmark);
     formData.append('addresstype',this.addressForm.value.addresstype);
     formData.append('pincode',this.addressForm.value.postalcode);
-    formData.append('latitude','');
-    formData.append('longitude','');
+    formData.append('latitude',lat);
+    formData.append('longitude',long);
     if(this.addressmode == false){
     this.restaurantservice.addaddress(formData).subscribe(res => {
       if(res && res.hasOwnProperty('userdetails')){
