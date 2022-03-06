@@ -136,12 +136,12 @@ app-categories{
 
 @media (min-width: 600px){
 .navbar.scrolling-navbar {
-    padding-top: 17px !important;
-    padding-bottom: 17px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 .navbar.scrolling-navbar.top-nav-collapse {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
 }
 }
 .category-carousel{
@@ -213,7 +213,7 @@ app-categories{
   .form-elegant .z-depth-1a {
   // -webkit-box-shadow: 0 2px 5px 0 rgb(55 161 255 / 26%), 0 4px 12px 0 rgb(121 155 254 / 25%);
   // box-shadow: 0 2px 5px 0 rgb(55 161 255 / 26%), 0 4px 12px 0 rgb(121 155 254 / 25%);
-  box-shadow: 0 2px 5px 0 rgb(244 67 54 / 26%), 0 4px 12px 0 rgb(244 67 54 / 26%);
+  box-shadow: 0 2px 5px 0 rgb(22 58 67 / 32%), 0 4px 12px 0 rgb(32 66 68 / 23%);
   }
   .btn.red-gradient {
   color: #fff;
@@ -223,9 +223,10 @@ app-categories{
   .form-elegant{
   .modal-header {
     background-color: #ff4b4b;
-    background: linear-gradient( 
-  40deg
-  , #e6b72b, #ed4748) !important;
+  //   background: linear-gradient( 
+  // 40deg
+  // , #e6b72b, #ed4748) !important;
+  background: linear-gradient(40deg, #325146, #103542) !important; 
   }
   }
 
@@ -356,8 +357,12 @@ app-categories{
     transform: translateY(-100%);
   }
  }
- .red{
+ .green{
   background-color: #d0eb99 !important;
+ }
+
+ .red{
+  background-color: #266984 !important
  }
  footer.red{
   background: linear-gradient(

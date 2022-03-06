@@ -49,6 +49,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 4px 0px 0px 0px;
+  border-bottom: none;
 }
 div.md-form{
   background: white;
@@ -187,4 +188,8 @@ solid #808080; */
 }
 .toggle-label input[type=checkbox]:checked + .back .toggle {
   margin-left: 91px;
+}
+.md-form input[type=text]:focus:not([readonly]){
+  box-shadow: none;
+  border-bottom: none;
 }

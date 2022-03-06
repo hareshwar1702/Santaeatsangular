@@ -1,11 +1,11 @@
 <div class="scroll-product">
-<div class="card z-depth-1 border-0" style="min-height: 100px;">
+<div class="card z-depth-1 border-0" style="min-height: 100px;" *ngIf="productsList">
 
 <!-- Small news -->
-<div class="single-news note"  *ngIf="productsList">
+<div class="single-news note"  *ngFor="let products of productsList;let cardIndex = index" >
 
     <!-- Grid row -->
-    <div class="row" *ngFor="let products of productsList;let cardIndex = index" >
+    <div class="row">
 
       <!-- Grid column -->
       <div class="col-md-3 col-4 p-0-8"  *ngIf="products.menu_categoryid == menuid">
@@ -45,7 +45,7 @@
         </a>
         <div class="d-flex justify-content-between">
           <div class="col-lg-8 col-5 text-truncate pl-0 mb-2">
-            <a href="#!" class="dark-grey-text">£{{products.menu_price}}</a>
+            <a href="#!" class="dark-grey-text">৳{{products.menu_price}}</a>
           </div>
           <div class="col-lg-4 col-7 d-flex justify-content-between cart-plus-minus">
             <a>
