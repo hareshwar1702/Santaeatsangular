@@ -356,3 +356,10 @@ app-categories{
     transform: translateY(-100%);
   }
  }
+ .red{
+  background-color: #d0eb99 !important;
+ }
+ footer.red{
+  background: linear-gradient(
+    45deg, #100f0f, #125568) !important;
+ }

@@ -33,6 +33,7 @@ import { CheckoutDetailsComponent } from './views/checkout/checkout-details/chec
 import { OrderhistoryComponent } from './main-layout/orderhistory/orderhistory.component';
 import { PaymentSummaryComponent } from './views/checkout/payment-summary/payment-summary.component';
 import { ForgetpasswordComponent } from './main-layout/forgetpassword/forgetpassword.component';
+import { TermsConditionComponent } from './main-layout/terms-condition/terms-condition.component';
 // import { BannerCarouselComponent } from './main-layout/banner-carousel/banner-carousel.component';
 
 const routes: Route[] = [
@@ -48,6 +49,7 @@ const routes: Route[] = [
     ]
   },
   {path: 'orderhistory', component: OrderhistoryComponent},
+  {path: 'termscondition', component: TermsConditionComponent},
   { path: 'outlets-details', children:
   [
     { path: 'outlets', component: OutletsDetailsComponent},
@@ -93,6 +95,7 @@ const routes: Route[] = [
     RegisterComponent,
     OrderhistoryComponent,
     ForgetpasswordComponent,
+    TermsConditionComponent,
     // DatepickerModule.forRoot(),
     // TimepickerModule.forRoot(),
     // DatetimePopupModule.forRoot()
