@@ -11,6 +11,7 @@ export class CategoriesComponent implements OnInit {
   categories:any;
   start:number = 0;
   end:number = 9;
+  changeviewFlag:boolean = false;
   constructor(private restaurantService: RestaurantService,private commonservice:CommonService) {
     this.commonservice.latlogtrigger.subscribe((data) => {
       this.getRestorantList(data);
@@ -29,6 +30,10 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.getRestorantList(null);   
     this.getCategories();
+  }
+
+  changeview(flag:boolean){
+    this.changeviewFlag = flag;
   }
   changerestoList(data:any){
     console.log(data);
