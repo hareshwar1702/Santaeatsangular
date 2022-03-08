@@ -28,8 +28,38 @@ export class OutletsDetailsComponent implements OnInit {
     this.restaurantservice.restopruntmenu(parseInt(this.restaurantObj.restaurant_id)).subscribe((data)=>{
       this.commonservice.getrestomenu(data);
     });
+    var searchlatlong = this.commonservice.searchlatlong;
+    if(searchlatlong){
+      // var searchdist = new google.maps.LatLng(searchlatlong.lat,searchlatlong.long);
+      // var restodist = new google.maps.LatLng(this.restaurantObj.latitude,this.restaurantObj.longitude);
+      var distimkm = this.getDistanceFromLatLonInKm(searchlatlong.lat,searchlatlong.long,this.restaurantObj.latitude,this.restaurantObj.longitude);
+      var distanceimMeter = Number((Number(distimkm)*1000).toFixed()) - 1000;
+      if(distanceimMeter > 0){
+       this.commonservice.deliveryCharge = Number((((distanceimMeter / 100 ) * 0.5) + 6).toFixed())
+      } else {
+        this.commonservice.deliveryCharge = 6;
+      }
+
+    }
   }
-  console.log(this.restaurantObj);
+
+  }
+  getDistanceFromLatLonInKm(lat1:number, lon1:number, lat2:number, lon2:number) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = this.deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    return d;
+  }
+  
+  deg2rad(deg:any) {
+    return deg * (Math.PI/180)
   }
 
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {

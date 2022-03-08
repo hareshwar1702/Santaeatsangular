@@ -10,14 +10,15 @@ import { CommonService } from 'src/app/service/common.service';
 export class CheckoutCartComponent implements OnInit {
   productlist:any;
   totalprice:any;
-  serviceCharge:any = 50;
-  deliveryCharge:any = 50;
+  serviceCharge:any = 0;
+  deliveryCharge:any = 0;
   total:any = 0;
   restaurantObj:any;
   isHomeDelivery:boolean = true;
   constructor(private commonservice:CommonService,public zone: NgZone,public router: Router) {
     this.productlist = this.commonservice.productsList;
     this.restaurantObj = this.commonservice.restaurantObj;
+    this.deliveryCharge = this.commonservice.deliveryCharge;
     this.totalprice = this.commonservice.totalprice;
     this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
     this.commonservice.finalcost = this.total;
@@ -39,8 +40,8 @@ export class CheckoutCartComponent implements OnInit {
     this.commonservice.deliverytype.subscribe((val)=>{
       this.isHomeDelivery = !this.isHomeDelivery;
       if( val == true){
-        this.serviceCharge = 50;
-        this.deliveryCharge = 50;
+        this.serviceCharge = 0;
+        this.deliveryCharge = this.commonservice.deliveryCharge;
         this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
       } else {
         this.serviceCharge = 0;

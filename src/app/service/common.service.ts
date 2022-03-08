@@ -32,6 +32,7 @@ export class CommonService {
   deliverytime:any;
   pickUpdetails:any;
   searchlatlong:any;
+  deliveryCharge:any;
   constructor() { }
   
   latlogtrigerchange(lat:Number,long:Number){
