@@ -2,6 +2,8 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {CommonService} from '../../../../service/common.service';
 import { UserService } from '../../../../service/user.service';
+import { LoginComponent } from '../../../../main-layout/login/login.component';
+import { MDBModalRef,MDBModalService } from 'angular-bootstrap-md';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,7 +13,8 @@ export class CartComponent implements OnInit {
   checkoutarr:any;
   totalprice:any = 0;
   userobj:any;
-  constructor(private commonservice:CommonService,public zone: NgZone,public router: Router,public userservice:UserService) {
+  modalRef: MDBModalRef;
+  constructor(private commonservice:CommonService,private modalService: MDBModalService,public zone: NgZone,public router: Router,public userservice:UserService) {
     this.checkoutarr = this.commonservice.checkoutarr;
     this.userobj = this.userservice.userdeails
     this.commonservice.productcount.subscribe(() => {
@@ -44,10 +47,25 @@ export class CartComponent implements OnInit {
     if(this.totalprice != 0 && this.userobj){
       this.zone.run(() => {this.router.navigate(['/checkout/checkout-details']); });
     } else if(!this.userobj){
-      alert('Please login first!');
+      this.openLoginModal();
     } else {
       alert("Please add value in card!");
     }
+  }
+
+  openLoginModal(){
+    this.modalRef = this.modalService.show(LoginComponent,
+      {
+        backdrop: true,
+        keyboard: true,
+        focus: true,
+        show: false,
+        ignoreBackdropClick: false,
+        class: 'form-elegant',
+        containerClass: 'top',
+        animated: true
+
+      });
   }
   changeCount(type:any,index:any){
     if(type == 'minus'){

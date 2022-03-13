@@ -12,7 +12,7 @@ export class CommonService {
   searchMenu = new EventEmitter();
   fetchaddress = new EventEmitter();
   foodtype = new EventEmitter();
-  
+  suggestedText:string;
   categories:any;
   editedobj:any;
   restorantList:any;

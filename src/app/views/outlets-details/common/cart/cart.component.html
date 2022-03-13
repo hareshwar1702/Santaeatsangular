@@ -15,7 +15,7 @@
                 {{products.menu_name}}
             </dd>
             <dd class="col-sm-4">
-                $ {{products.menu_price}}
+                ৳ {{products.menu_price}}
             </dd>
             <dd class="col-sm-6 d-flex justify-content-between cart-plus-minus">
                 <a>
@@ -34,7 +34,7 @@
         </div>
       </mdb-card-body>
       <button class="clearfix px-3" mdbBtn type="button" color="black" block="true" mdbWavesEffect>
-        <span class="float-left">Subtotal</span>  <span class="float-right">£ {{totalprice}}</span>
+        <span class="float-left">Subtotal</span>  <span class="float-right">৳ {{totalprice}}</span>
     </button>
     <button class="clearfix px-3" mdbBtn type="button" color="red" block="true" (click)="checkOut()" mdbWavesEffect style="background-color: #ed4134!important;" >
         Checkout

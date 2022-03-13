@@ -56,7 +56,7 @@
                     {{products.menu_name}}
                   </dd>
                   <dd class="col-sm-4 col-6"  >
-                      $ {{products.menu_price}}
+                    ৳ {{products.menu_price}}
                   </dd>
                   <dd class="col-sm-4 col-5 d-flex justify-content-between cart-plus-minus"  >
                       <a>
@@ -81,19 +81,19 @@
                       Sub Total
                     </dd>
                     <dd class="col-sm-4 col-5 text-right">
-                      $ {{totalprice}}
+                      ৳ {{totalprice}}
                     </dd>
                     <dd class="col-sm-8 col-7" *ngIf="isHomeDelivery">
                         Service Charge
                       </dd>
                       <dd class="col-sm-4 col-5 text-right" *ngIf="isHomeDelivery">
-                        $ {{serviceCharge}}
+                        ৳ {{serviceCharge}}
                       </dd>
                       <dd class="col-sm-8 col-7" *ngIf="isHomeDelivery">
                         Delivery Charge
                       </dd>
                       <dd class="col-sm-4 col-5 text-right" *ngIf="isHomeDelivery">
-                        $ {{deliveryCharge}}
+                        ৳ {{deliveryCharge}}
                       </dd>
                   </dl>
             </mdb-card-body>
@@ -103,7 +103,7 @@
                       Total
                     </dd>
                     <dd class="col-sm-4 col-5 text-right">
-                      $ {{total}}
+                      ৳ {{total}}
                     </dd>
                 </dl>
             </mdb-card-header>
@@ -121,7 +121,8 @@
                     <mdb-icon style="font-size: 17px;" fas icon="comment-alt"></mdb-icon>
                 </span>
             </a>
-        Some quick example text</mdb-card-text>
+            <input type="text" style="width: 90%;" [(ngModel)]="suggestedText"  (change)="suggetionchange()" placeholder="Some quick example text">
+        </mdb-card-text>
         </mdb-card-body>
       </mdb-card>
       

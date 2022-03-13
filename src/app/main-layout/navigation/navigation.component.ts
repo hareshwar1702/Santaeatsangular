@@ -42,6 +42,7 @@ export class NavigationComponent implements OnInit {
       subscriptionFormModalName: new FormControl('', Validators.required),
       subscriptionFormModalEmail: new FormControl('', Validators.email)
     });
+    this.getmyAddress()
   }
   changedeliverytype(){
     this.deliverytype = !this.deliverytype;

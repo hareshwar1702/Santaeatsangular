@@ -62,7 +62,7 @@
                                 <div class="bottom-div">
                                     <mdb-badge class="_badge" color="black">{{restro.restauran_delivery_min_time}} Min</mdb-badge>
                                     <p class="card_address marginBottomStore mg-st ng-tns-c21-2 ng-star-inserted"
-                                        style="font-size: 11px">{{restro.sgst}} MI</p>
+                                        style="font-size: 11px">{{restro.radius}} MI</p>
                                 </div>
                                 <div class="bottom-div">
                                 </div>
@@ -82,9 +82,9 @@
                                         <small class="text-muted"> Open :-{{restro.open_time}}  Close :-{{restro.close_time}} </small>
                                      </p>
                                 </div>
-                                <div class="bottom-div">
+                                <div class="bottom-div ratingDiv">
                                     <p  class="ng-tns-c21-2 ng-star-inserted rating" >
-                                        <mdb-icon fas icon="star"  *ngFor="let item of createRange(restro.rating);" class="pr-2 yellow-text" size="lg"></mdb-icon>
+                                        <mdb-icon fas icon="star"  *ngFor="let item of createRange(restro.rating);" class="pr-2 yellow-text fa-sm"  ></mdb-icon>
                                     </p>
                                 </div>
                             </div>

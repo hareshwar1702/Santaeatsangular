@@ -31,6 +31,7 @@ export class PaymentSummaryComponent implements OnInit {
   }
 
   makePayment() {
+    var suggestedText = this.commonservice.suggestedText;
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51HZakeG7964PNuDvKfjDJS4VzIHAn0AZkIL1KnM8PCCa74SJtn3HBUfG0guhn0vlJyCwfeB0eezzYgLvJ9uLPlA600YEjqWU7f',
       locale: 'auto',
@@ -40,7 +41,7 @@ export class PaymentSummaryComponent implements OnInit {
         var formData: any = new FormData();
         formData.append('order',this.checkoutarr);
         formData.append('user_id',this.userdetails.userdetails.user_id);
-        formData.append('cart_subtotal',this.totalamount);
+        formData.append('cart_subtotal',this.totalamount+111);
         formData.append('total_cgst',2);
         formData.append('total_sgst',5);
         formData.append('payment_type',"Card Payment");
@@ -48,6 +49,7 @@ export class PaymentSummaryComponent implements OnInit {
         formData.append('order_type',"takeout");
         formData.append('charges',40);
         formData.append('total',250);
+        formData.append('suggestedchange',suggestedText)
         formData.append('transaction_id',stripeToken);
         formData.append('easepayid','');
         formData.append('discount_amount',0);

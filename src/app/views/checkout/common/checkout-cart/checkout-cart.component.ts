@@ -15,6 +15,7 @@ export class CheckoutCartComponent implements OnInit {
   total:any = 0;
   restaurantObj:any;
   isHomeDelivery:boolean = true;
+  suggestedText:string;
   constructor(private commonservice:CommonService,public zone: NgZone,public router: Router) {
     this.productlist = this.commonservice.productsList;
     this.restaurantObj = this.commonservice.restaurantObj;
@@ -52,6 +53,9 @@ export class CheckoutCartComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+  suggetionchange(){
+    this.commonservice.suggestedText = this.suggestedText;
   }
   changeCount(type:any,index:any){
     if(type == 'minus'){

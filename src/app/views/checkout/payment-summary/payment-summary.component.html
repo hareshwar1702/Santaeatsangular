@@ -56,8 +56,8 @@
                   <th scope="row">{{cardIndex}}</th>
                   <td>{{products.menu_displayname}}</td>
                   <td>{{products.count}}</td>
-                  <td>${{products.menu_price}}</td>
-                  <td>${{products.menu_price * products.count}}</td>
+                  <td>৳{{products.menu_price}}</td>
+                  <td>৳{{products.menu_price * products.count}}</td>
                 </tr>
               </tbody>
   
@@ -70,10 +70,10 @@
             </div>
             <div class="col-xl-3">
               <ul class="list-unstyled">
-                <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>${{totalamount}}</li>
-                <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111</li>
+                <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>৳{{totalamount}}</li>
+                <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>৳111</li>
                 </ul>
-                <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span style="font-size: 25px;">${{totalamount+111}}</span></p>
+                <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span style="font-size: 25px;">৳{{totalamount+111}}</span></p>
             </div>
           </div>
           <hr>
