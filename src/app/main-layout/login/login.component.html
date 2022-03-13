@@ -73,7 +73,9 @@
               </form>
               </div>
 
-              <p class="dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">or<a routerLink="/dashboards" class="blue-text ml-1">Continue as Guest </a></p>
+              <p class="dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">or<a routerLink="/dashboards" class="blue-text ml-1" style="margin-right: 20px;">Continue as Guest </a>
+              <a class="blue-text ml-1"  (click)="redirectURL()">Document </a>
+              </p> 
               <div class="modal-footer mx-5 pt-3 mb-1">
                 <p class="font-small grey-text d-flex justify-content-end">Not Signed Up?
                   <a data-dismiss="modal" class="red-text ml-1" data-toggle="modal" data-target="#basicExample" (click)="openRegisterModal()" mdbWavesEffect>Sign Up Here</a>
