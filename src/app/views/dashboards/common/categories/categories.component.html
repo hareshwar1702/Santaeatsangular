@@ -15,8 +15,13 @@
         </ul> -->
         <div class="categories">
             <div class="row" style="float: right;padding-right: 20px;">
-                <mdb-icon fas icon="angle-double-left" style="padding-right: 20px;" (click)="changeCategories('preview')"></mdb-icon>
-                <mdb-icon fas icon="angle-double-right" (click)="changeCategories('next')"></mdb-icon>
+                  <a class="_right" mdbBtn floating="true" size="sm" gradient="red" mdbWavesEffect (click)="changeCategories('preview')">
+                    <mdb-icon fas icon="angle-double-left" color="white" size="2x" ></mdb-icon>
+                  </a>
+                  <a class="_left" mdbBtn floating="true" size="sm" gradient="red" mdbWavesEffect (click)="changeCategories('next')">
+                    <mdb-icon fas icon="angle-double-right" color="black" size="2x" ></mdb-icon>
+                  </a>
+                <!-- <mdb-icon fas icon="angle-double-right" (click)="changeCategories('next')"></mdb-icon> -->
             </div>
             <ul class="list-group list-group-horizontal" *ngFor="let item of slides; let i = index" style="width: 100%;overflow:auto;">
                 <li class="list-group-item" *ngFor="let card of item; let cardIndex = index">
@@ -39,12 +44,12 @@
         <div class="container p-0 d-flex flex-wrap" *ngIf="changeviewFlag == false">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 card_parent row-col-eq ng-tns-c21-2 ng-star-inserted mb-4 mb-lg-0 pb-3"
                *ngFor="let restro of restorantList;" >
-                <div class="card card_hover" >
+                <div class="card card_hover" (click)="sendRestarunt(restro)" mdbWavesEffect routerLink="../outlets-details/outlets">
                     <div class="card_inner" >
                         <restaurant-tags class="ng-tns-c21-2 ng-star-inserted"
                             style="--closed_tag_top:15px; --closed_tag_bg_color:#d63230; --closed_tag_font_color:white; --preorder_tag_top:45px; --preorder_tag_bg_color:#ba68c8; --preorder_tag_font_color:#ffffff; --sponsored_tag_bottom:2px; --sponsored_tag_bg_color:#ffc058; --sponsored_tag_font_color:white;">
                         </restaurant-tags>
-                        <div class="card_image z-depth-1" (click)="sendRestarunt(restro)" mdbWavesEffect routerLink="../outlets-details/outlets">
+                        <div class="card_image z-depth-1" mdbWavesEffect>
                             <img class="card_image_view"
                             [src]="restro.restaurant_logo">
                         </div>

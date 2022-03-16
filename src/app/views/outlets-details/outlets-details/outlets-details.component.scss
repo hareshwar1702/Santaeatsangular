@@ -9,10 +9,21 @@
     top: -1vw!important;
     z-index: 999;
 }
-.input-group-prepend{
-    margin-right: 26px;
-}
+
 .rating{
     height: 20px;
     overflow: hidden;
+}
+._search{
+    background: white;
+    border-radius: 23px;
+    .input-group-prepend{
+        margin-right: 2px;
+    }
+    ._input{
+        border: none;
+    }:focus{
+        box-shadow: none !important;
+        border-bottom: none !important;
+    }
 }

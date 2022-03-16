@@ -312,7 +312,7 @@ hr {
     .categories{
         li{
             border: none;
-            padding: 10px 20px;
+            padding: 10px 30px;
             background: none;
             ._img{
                 border-radius: 11em;
@@ -333,4 +333,34 @@ hr {
             font-size: 88%;
         }
     }
+    }
+
+    .categories{
+        ul:nth-of-type(2n){
+            display: none;
+        }
+        div.row{
+            width: 100%;
+            display: block;
+            a._left{
+                position: absolute;
+                right: 1vw;
+                z-index: 99;
+                margin-top: 30px;
+                border-radius: 20px;
+                .fas{
+                    color: white;
+                }
+            }
+            a._right{
+                position: absolute;
+                left: 1vw;
+                z-index: 99;
+                margin-top: 30px;
+                border-radius: 20px;
+                .fas{
+                    color: white;
+                }
+            }
+        }
     }
