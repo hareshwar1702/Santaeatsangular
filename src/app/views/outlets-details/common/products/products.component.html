@@ -1,14 +1,14 @@
 <div class="scroll-product">
-<div class="card z-depth-1 border-0" style="min-height: 100px;" *ngIf="productsList">
+<div class="card z-depth-1 border-0" style="min-height: 100px;" >
 
 <!-- Small news -->
-<div class="single-news "  *ngFor="let products of productsList;let cardIndex = index" >
+<div class="single-news" *ngIf="productsList" >
 
     <!-- Grid row -->
-    <div class="row" *ngIf="products.menu_categoryid == menuid">
+    <div class="row" *ngFor="let products of productsList;let cardIndex = index">
 
       <!-- Grid column -->
-      <div class="col-md-3 col-4 p-0-8"  *ngIf="products.menu_categoryid == menuid">
+      <div class="col-md-3 col-4 p-0-8 mb-2"  *ngIf="products.menu_categoryid == menuid">
         <!--Image-->
         <div class="view overlay rounded z-depth-1" *ngIf="products.menu_logo != ''">
           <img class="img-fluid" [src]="products.menu_logo" alt="Sample image">

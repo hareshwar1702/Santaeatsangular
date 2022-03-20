@@ -31,3 +31,9 @@
 .borderbottom{
     border-bottom: 1px solid gray;
 }  
+
+.card{
+    .single-news:nth-child(1){
+        margin-top: 10px;
+    }
+}

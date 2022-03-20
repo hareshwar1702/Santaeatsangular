@@ -368,3 +368,11 @@ app-categories{
   background: linear-gradient(
     45deg, #100f0f, #125568) !important;
  }
+
+ mdb-modal-container{
+  .modal-header{
+    button.close{
+      color: white;
+    }
+  }
+ }
