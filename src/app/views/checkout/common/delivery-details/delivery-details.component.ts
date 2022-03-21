@@ -50,7 +50,7 @@ export class DeliveryDetailsComponent implements OnInit {
   makePayment(){
     var deleveryaddress = this.commonservice.deliveraddress;
     var pickUpdetails = this.commonservice.pickUpdetails;
-    if(this.date && this.time != 0 && deleveryaddress && this.isHomeDelivery){
+    if(deleveryaddress && this.isHomeDelivery){
       this.commonservice.deliverydate = this.date;
       this.commonservice.deliverytime = this.time;
       this.zone.run(() => {this.router.navigate(['/checkout/payment-summary']); });
@@ -58,7 +58,7 @@ export class DeliveryDetailsComponent implements OnInit {
       this.zone.run(() => {this.router.navigate(['/checkout/payment-summary']); });
     }else if(deleveryaddress == undefined) {
       alert('Please select delivery adderss.(Click on DELIVER HERE Button)')
-    } else{
+    } else{ 
       alert("Please select date and time First!");
     }
   }

@@ -45,6 +45,7 @@ export class CheckoutDetailsComponent implements OnInit {
     this.discountcoupon();
   }
 
+ 
   @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
     if(this.userService.userdeails != undefined){
     localStorage.setItem('userinfo', JSON.stringify(this.userService.userdeails));

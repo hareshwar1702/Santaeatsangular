@@ -23,6 +23,10 @@ export class CheckoutCartComponent implements OnInit {
     this.totalprice = this.commonservice.totalprice;
     this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
     this.commonservice.finalcost = this.total;
+    this.commonservice.deliverychange.subscribe((data)=>{
+      this.deliveryCharge = data;
+      this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+    })
     this.commonservice.productcount.subscribe(() => {
       this.totalprice = 0;
       this.total = 0;

@@ -14,12 +14,14 @@ export class PaymentSummaryComponent implements OnInit {
   totalamount:number;
   checkoutarr:any;
   userdetails:any;
+  pickUpdetails:any;
     @ViewChild('centralModalSm') centralModalSm: any;
   constructor(private commonservice:CommonService,private userservice:UserService,public restaurantservice:RestaurantService,
     public zone: NgZone,public router: Router) { 
     this.totalamount = this.commonservice.finalcost;
     this.userdetails = this.userservice.userdeails;
     this.checkoutarr = this.commonservice.checkoutarr;
+    this.pickUpdetails = this.commonservice.pickUpdetails;
     if(!this.userdetails){
       this.zone.run(() => {this.router.navigate(['/dashboards']); });
     }
@@ -54,6 +56,7 @@ export class PaymentSummaryComponent implements OnInit {
         formData.append('easepayid','');
         formData.append('discount_amount',0);
         formData.append('coupon','');
+        formData.append('Pickup',this.pickUpdetails);
         formData.append('order_date',"21-08-2021");
         formData.append('order_time',"20:46");
         this.restaurantservice.saveorder(formData).subscribe((res:any)=>{
