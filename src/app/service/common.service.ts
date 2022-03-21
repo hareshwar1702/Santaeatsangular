@@ -12,6 +12,7 @@ export class CommonService {
   searchMenu = new EventEmitter();
   fetchaddress = new EventEmitter();
   foodtype = new EventEmitter();
+  deliverychange = new EventEmitter();
   suggestedText:string;
   categories:any;
   editedobj:any;
@@ -42,6 +43,9 @@ export class CommonService {
   }
   getaddresschg(){
     this.fetchaddress.emit();
+  }
+  deviveryAddchange(){
+    this.deliverychange.emit(this.deliveryCharge)
   }
   deleverytypefunction(val:boolean){
     this.deliverytype.emit(val);
