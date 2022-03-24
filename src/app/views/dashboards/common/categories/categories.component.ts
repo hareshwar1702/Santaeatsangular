@@ -12,6 +12,7 @@ export class CategoriesComponent implements OnInit {
   start:number = 0;
   end:number = 9;
   changeviewFlag:boolean = false;
+  searchlatlong:any;
   constructor(private restaurantService: RestaurantService,private commonservice:CommonService) {
     this.commonservice.latlogtrigger.subscribe((data) => {
       this.getRestorantList(data);
@@ -36,8 +37,29 @@ export class CategoriesComponent implements OnInit {
     this.changeviewFlag = flag;
   }
   changerestoList(data:any){
-    console.log(data);
-    this.commonservice.latlogtrigerchange(data.latitude,data.longitude);
+    this.searchlatlong = this.commonservice.searchlatlong;
+    data['latitude'] =  this.searchlatlong.lat;
+    data['longitude']=  this.searchlatlong.long;
+    this.restaurantService.getRestaurantListCategorie(data)
+    .subscribe(
+      (response) => {                           //Next callback
+        console.log('response received')
+        console.log(JSON.stringify(response));
+
+        const res: any = response;
+
+        this.restorantList = res.list;
+        this.commonservice.restorantList = res.list;
+      },
+      (error) => {                              //Error callback
+        console.error('Request failed with error')
+        alert(error);
+      },
+      () => {                                   //Complete callback
+        console.log('Request completed')
+      })
+
+    // this.commonservice.latlogtrigerchange(this.searchlatlong.latitude,this.searchlatlong.longitude);
   }
   fetchrestaurantList(data:any){  
     this.restaurantService.getRestaurantList(data)

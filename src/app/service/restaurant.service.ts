@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RestaurantService {
-  url = 'http://api.foodbahok.com';
+  url = 'https://api.foodbahok.com';
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +17,17 @@ export class RestaurantService {
         longitude = data.longitude;
     }
     return this.http.get(this.url+'/get_restaurant_list?latitude='+latitude+'&longitude='+longitude+'');
+  }
+  getRestaurantListCategorie(data:any){
+    var latitude='';    
+    var longitude='';
+    if(data){
+        latitude = data.latitude;
+        longitude = data.longitude;
+    }
+    const formdata:any = new FormData()
+    formdata.append('parent_category_id',data.pid);
+    return this.http.post(this.url+'/restaurant_list_parent_categorywise?latitude='+latitude+'&longitude='+longitude+'',formdata);
   }
   getaAddressdetails(lat:number,long:number){
     return this.http.get('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+lat+'&longitude='+long+'&localityLanguage=en')

@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit , AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {CommonService} from '../../../../service/common.service';
 import { UserService } from '../../../../service/user.service';
@@ -9,13 +9,15 @@ import { MDBModalRef,MDBModalService } from 'angular-bootstrap-md';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, AfterViewInit {
   checkoutarr:any;
   totalprice:any = 0;
   userobj:any;
   modalRef: MDBModalRef;
+  restoObj:any;
   constructor(private commonservice:CommonService,private modalService: MDBModalService,public zone: NgZone,public router: Router,public userservice:UserService) {
     this.checkoutarr = this.commonservice.checkoutarr;
+    this.restoObj = this.commonservice.restaurantObj;
     this.userobj = this.userservice.userdeails
     this.commonservice.productcount.subscribe(() => {
       this.totalprice = 0;
@@ -35,6 +37,22 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  ngAfterViewInit() {
+    if(this.checkoutarr.length !=0){
+      setTimeout(() => {
+        let text = "You have already items in your cart from different outlet. Are you sure you want remove?";
+    if (confirm(text) == true) {
+      this.checkoutarr = undefined;
+      this.commonservice.checkoutarr = [];
+    } else {
+      if(this.checkoutarr[0]['restaurant_id'] != this.restoObj.restaurant_id){
+        this.zone.run(() => {this.router.navigate(['/dashboards']); });
+      }
+    }
+      }, 1000);
+  }
+}
 
   deleteCard(){
     this.totalprice = 0;

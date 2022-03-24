@@ -15,6 +15,10 @@ export class PaymentSummaryComponent implements OnInit {
   checkoutarr:any;
   userdetails:any;
   pickUpdetails:any;
+  deliveryaddress:any;
+  restoObj:any;
+  deliverydate:any;
+  deliverytime:any;
     @ViewChild('centralModalSm') centralModalSm: any;
   constructor(private commonservice:CommonService,private userservice:UserService,public restaurantservice:RestaurantService,
     public zone: NgZone,public router: Router) { 
@@ -22,6 +26,10 @@ export class PaymentSummaryComponent implements OnInit {
     this.userdetails = this.userservice.userdeails;
     this.checkoutarr = this.commonservice.checkoutarr;
     this.pickUpdetails = this.commonservice.pickUpdetails;
+    this.deliveryaddress = this.commonservice.deliveraddress;
+    this.restoObj = this.commonservice.restaurantObj;
+    this.deliverydate = this.commonservice.deliverydate;
+    this.deliverytime = this.commonservice.deliverytime;
     if(!this.userdetails){
       this.zone.run(() => {this.router.navigate(['/dashboards']); });
     }
@@ -44,21 +52,21 @@ export class PaymentSummaryComponent implements OnInit {
         formData.append('order',this.checkoutarr);
         formData.append('user_id',this.userdetails.userdetails.user_id);
         formData.append('cart_subtotal',this.totalamount+111);
-        formData.append('total_cgst',2);
-        formData.append('total_sgst',5);
+        formData.append('total_cgst',this.restoObj.cgst);
+        formData.append('total_sgst',this.restoObj.sgst);
         formData.append('payment_type',"Card Payment");
-        formData.append('delivery_address',"Pune");
+        formData.append('delivery_address',this.deliveryaddress);
         formData.append('order_type',"takeout");
         formData.append('charges',40);
-        formData.append('total',250);
+        formData.append('total', this.totalamount);
         formData.append('suggestedchange',suggestedText)
         formData.append('transaction_id',stripeToken);
         formData.append('easepayid','');
         formData.append('discount_amount',0);
         formData.append('coupon','');
         formData.append('Pickup',this.pickUpdetails);
-        formData.append('order_date',"21-08-2021");
-        formData.append('order_time',"20:46");
+        formData.append('order_date', this.deliverydate);
+        formData.append('order_time', this.deliverytime);
         this.restaurantservice.saveorder(formData).subscribe((res:any)=>{
           if(res['message'] == 'Order Saved.'){
             alert("success!");

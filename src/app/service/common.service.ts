@@ -37,8 +37,7 @@ export class CommonService {
   constructor() { }
   
   latlogtrigerchange(lat:Number,long:Number){
-    console.log(lat,long);
-    var json = {latitude:lat,longitude:long};
+    var json = {latitude:lat,longitude:long,};
     this.latlogtrigger.emit(json)
   }
   getaddresschg(){
