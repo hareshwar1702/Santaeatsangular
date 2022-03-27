@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   userdeails:any;
-  url = 'http://api.foodbahok.com';
+  url = 'https://api.foodbahok.com';
   loginchange = new EventEmitter();
   constructor(public httpclient: HttpClient) { }
 

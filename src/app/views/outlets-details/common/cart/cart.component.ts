@@ -42,14 +42,23 @@ export class CartComponent implements OnInit, AfterViewInit {
     if(this.checkoutarr.length !=0){
       setTimeout(() => {
         let text = "You have already items in your cart from different outlet. Are you sure you want remove?";
-    if (confirm(text) == true) {
+    if(this.checkoutarr[0]['restaurant_id'] != this.restoObj.restaurant_id){
+      if (confirm(text) == true) {
       this.checkoutarr = undefined;
       this.commonservice.checkoutarr = [];
-    } else {
-      if(this.checkoutarr[0]['restaurant_id'] != this.restoObj.restaurant_id){
-        this.zone.run(() => {this.router.navigate(['/dashboards']); });
+      } else {
+        if(this.checkoutarr[0]['restaurant_id'] != this.restoObj.restaurant_id){
+          this.zone.run(() => {this.router.navigate(['/dashboards']); });
+        }
       }
-    }
+    } else {
+      for(let i =0;i<  this.checkoutarr.length;i++){
+        if(this.checkoutarr[i]['count'] > 0){
+          this.totalprice = this.totalprice + (parseFloat(this.checkoutarr[i]['menu_price'])*this.checkoutarr[i]['count']);
+          this.commonservice.totalprice = this.totalprice;
+        }
+      }
+    } 
       }, 1000);
   }
 }
