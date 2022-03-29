@@ -32,8 +32,13 @@ export class AddressComponent implements OnInit {
 
   getaddresses(){
     if(this.userdetails){
-    this.restaurantservice.getaddresses(this.userdetails.userdetails.user_id).subscribe((data)=>{
+    this.restaurantservice.getaddresses(this.userdetails.userdetails.user_id).subscribe((data:any)=>{
       this.addresses = undefined;
+      if(data.address.length > 0){
+      for(let addr = 0;addr<=data.address.length -1;addr++){
+        data.address[addr]['checkflag'] = false;
+      }
+    }
       this.addresses = data;
     })
   }
@@ -55,6 +60,15 @@ export class AddressComponent implements OnInit {
       });
   }
   setdeliveraddress(deliveraddress:any,index:number){
+    var doc = document.getElementsByClassName('checkboxInput');
+    for(var e = 0; e < doc.length; e++) { // For each element
+      var element = <HTMLInputElement> document.getElementById("address"+e);
+      element.checked = false;
+   }
+   if(this.addresses.address[index]['checkflag'] == false){
+   var element1 = <HTMLInputElement> document.getElementById("address"+index);
+   element1.checked = true;
+   }
     this.commonservice.deliveraddress = deliveraddress;
     var tempdeliveryObj:any = this.addresses.address[index];
     if(!tempdeliveryObj.hasOwnProperty('checkflag') || this.addresses.address[index]['checkflag'] == false){
