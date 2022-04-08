@@ -9,6 +9,7 @@ export class ProductsComponent implements OnInit {
   productsList:any;
   menuid = '';
   foodtype = '';
+  searchname:any;
   constructor(private commonservice:CommonService) {
     this.commonservice.productcount.subscribe(() => {
       // this.productsList = this.commonservice.productsList;
@@ -44,7 +45,11 @@ export class ProductsComponent implements OnInit {
         this.productsList[i]['index'] = i;
       }
       this.commonservice.productsList = this.productsList;
-    })
+    });
+    this.commonservice.searchMenu.subscribe((data)=>{
+      this.searchname = data;
+      this.showMenuonSearch();
+  })
     this.commonservice.foodtype.subscribe((res) =>{
       if(res == true){
         this.foodtype = 'Vegetarian';
@@ -66,6 +71,22 @@ export class ProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  showMenuonSearch(){
+    var filter, li1, i, txtValue;
+    filter = this.searchname.toUpperCase();
+    var ul:any = document.getElementById("myUL1");
+    li1 = ul.getElementsByTagName("li");
+    for (i = 0; i < li1.length; i++) {
+        // a = li1[i].getElementsByTagName("p")[0];
+        txtValue = li1[i].textContent || li1[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li1[i].style.display = "";
+        } else {
+            li1[i].style.display = "none";
+        }
+    }
   }
 
   changeCount(type:any,index:any){

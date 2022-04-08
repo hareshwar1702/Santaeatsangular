@@ -14,10 +14,10 @@ export class MenuComponent implements OnInit {
       this.menus = this.commonservice.menus;
       this.commonservice.changemenu(this.menus[0]);
     })
-    this.commonservice.searchMenu.subscribe((data)=>{
-        this.searchname = data;
-        this.showMenuonSearch();
-    })
+    // this.commonservice.searchMenu.subscribe((data)=>{
+    //     this.searchname = data;
+    //     this.showMenuonSearch();
+    // })
    }
 
   ngOnInit(): void {
