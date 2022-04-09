@@ -5,10 +5,10 @@
           <div class="col-xl-9">
             <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #123-123</strong></p>
           </div>
-          <div class="col-xl-3 float-end">
+          <!-- <div class="col-xl-3 float-end">
             <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i class="fas fa-print text-primary"></i> Print</a>
             <a  class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i class="far fa-file-pdf text-danger"></i> Export</a>
-          </div>
+          </div> -->
           <hr>
         </div>
   
@@ -33,7 +33,7 @@
             <div class="col-xl-4">
               <p class="text-muted">Invoice</p>
               <ul class="list-unstyled">
-                <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">ID:</span>#123-456</li>
+                <!-- <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">ID:</span>#123-456</li> -->
                 <!-- <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Creation Date: </span></li> -->
                 <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold"> Unpaid</span></li>
               </ul>
@@ -70,10 +70,10 @@
             </div>
             <div class="col-xl-3">
               <ul class="list-unstyled">
-                <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>৳{{totalamount}}</li>
-                <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>৳111</li>
+                <li class="text-muted ms-3"><span class="text-black me-4">SubTotal: </span>৳ {{totalamount}}</li>
+                <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%): </span>৳ 111</li>
                 </ul>
-                <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span style="font-size: 25px;">৳{{totalamount+111}}</span></p>
+                <p class="text-black float-start"><span class="text-black me-3"> Total Amount: </span><span style="font-size: 25px;">৳ {{totalamount+111}}</span></p>
             </div>
           </div>
           <hr>
