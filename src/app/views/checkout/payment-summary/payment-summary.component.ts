@@ -51,7 +51,7 @@ export class PaymentSummaryComponent implements OnInit {
         var formData: any = new FormData();
         formData.append('order',this.checkoutarr);
         formData.append('user_id',this.userdetails.userdetails.user_id);
-        formData.append('cart_subtotal',this.totalamount+111);
+        formData.append('cart_subtotal',this.totalamount);
         formData.append('total_cgst',this.restoObj.cgst);
         formData.append('total_sgst',this.restoObj.sgst);
         formData.append('payment_type',"Card Payment");

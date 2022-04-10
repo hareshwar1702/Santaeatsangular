@@ -26,6 +26,7 @@ export class CheckoutCartComponent implements OnInit {
     this.commonservice.deliverychange.subscribe((data)=>{
       this.deliveryCharge = data;
       this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+      this.commonservice.finalcost = this.total;
     })
     this.commonservice.productcount.subscribe(() => {
       this.totalprice = 0;
@@ -48,10 +49,12 @@ export class CheckoutCartComponent implements OnInit {
         this.serviceCharge = 0;
         this.deliveryCharge = this.commonservice.deliveryCharge;
         this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+        this.commonservice.finalcost = this.total;
       } else {
         this.serviceCharge = 0;
         this.deliveryCharge = 0;
         this.total = this.totalprice + this.serviceCharge + this.deliveryCharge;
+        this.commonservice.finalcost = this.total;
       }
     })
    }

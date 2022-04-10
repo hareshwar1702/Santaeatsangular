@@ -59,10 +59,12 @@ export class AddaddressComponent implements OnInit {
     this.geocoder = new google.maps.Geocoder();
     var lat:Number = 0;
     var long:Number = 0; 
+    
     this.geocoder.geocode({'address': this.addressForm.value.aptno+','+this.addressForm.value.address+','+this.addressForm.value.postalcode}, (results:any, status:any) => {
       if (status == google.maps.GeocoderStatus.OK) {
         lat = results[0].geometry.location.lat();
         long =  results[0].geometry.location.lng();
+        this.addresschanges(lat,long)
    } else {
           console.log('Error - ', results, ' & Status - ', status);
       }
@@ -71,6 +73,11 @@ export class AddaddressComponent implements OnInit {
     if (this.addressForm.invalid) {
         return;
     }
+    
+   
+  }
+
+  addresschanges(lat:any,long:any){
     var formData: any = new FormData();
     formData.append('user_id',this.userdetails.userdetails.user_id);
     formData.append('fullname',this.addressForm.value.username);
@@ -85,7 +92,8 @@ export class AddaddressComponent implements OnInit {
     formData.append('longitude',long);
     if(this.addressmode == false){
     this.restaurantservice.addaddress(formData).subscribe(res => {
-      if(res && res.hasOwnProperty('userdetails')){
+      var data:any = res;
+      if(data && data['message'] == 'success'){
         // this.userservice.userdeails = res;
         // this.zone.run(() => {this.router.navigate(['/dashboards']); });
         this.commonservice.getaddresschg();
@@ -96,7 +104,8 @@ export class AddaddressComponent implements OnInit {
   } else {
     formData.append('id',this.commonservice.editedobj.id);
     this.restaurantservice.editaddress(formData).subscribe(res => {
-      if(res && res.hasOwnProperty('userdetails')){
+      var data:any = res;
+      if(data && data['message'] == 'success'){
         // this.userservice.userdeails = res;
         // this.zone.run(() => {this.router.navigate(['/dashboards']); });
         this.commonservice.getaddresschg();
@@ -105,9 +114,7 @@ export class AddaddressComponent implements OnInit {
       }
     })
   }
-
   }
-
   closeLoginModal(){
     this.modalRef.hide();
 }
