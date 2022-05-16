@@ -44,10 +44,10 @@ export class PaymentSummaryComponent implements OnInit {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51HZakeG7964PNuDvKfjDJS4VzIHAn0AZkIL1KnM8PCCa74SJtn3HBUfG0guhn0vlJyCwfeB0eezzYgLvJ9uLPlA600YEjqWU7f',
       locale: 'auto',
-      token:(stripeToken:any)=>{
-        console.log(stripeToken)
-        this.save(stripeToken);
-      }
+        token:(stripeToken:any)=>{
+          console.log(stripeToken)
+          this.save(stripeToken);
+        }
     });
     
     paymentHandler.open({
@@ -57,35 +57,35 @@ export class PaymentSummaryComponent implements OnInit {
     });
   }
  
-  save(stripeToken:any){
-    var suggestedText = this.commonservice.suggestedText;
-    var formData: any = new FormData();
-    formData.append('order',JSON.stringify(this.checkoutarr));
-    formData.append('user_id',this.userdetails.userdetails.user_id);
-    formData.append('cart_subtotal',this.totalamount);
-    formData.append('total_cgst',this.restoObj.cgst);
-    formData.append('total_sgst',this.restoObj.sgst);
-    formData.append('payment_type',"Card Payment");
-    formData.append('delivery_address',JSON.stringify(this.deliveryaddress));
-    formData.append('order_type',"takeout");
-    formData.append('charges',40);
-    formData.append('total', this.totalamount);
-    formData.append('suggestedchange',suggestedText)
-    formData.append('transaction_id',stripeToken.id);
-    formData.append('easepayid','');
-    formData.append('discount_amount',0);
-    formData.append('coupon','');
-    formData.append('Pickup',this.pickUpdetails);
-    formData.append('order_date', this.deliverydate);
-    formData.append('order_time', this.deliverytime);
-    this.restaurantservice.saveorder(formData).subscribe((res:any)=>{
-      if(res['message'] == 'Order Saved.'){
-        alert("success!");
-      } else {
-        alert("fails!");
-      }
-    })
-  }
+    save(stripeToken:any){
+      var suggestedText = this.commonservice.suggestedText;
+      var formData: any = new FormData();
+      formData.append('order',JSON.stringify(this.checkoutarr));
+      formData.append('user_id',this.userdetails.userdetails.user_id);
+      formData.append('cart_subtotal',this.totalamount);
+      formData.append('total_cgst',this.restoObj.cgst);
+      formData.append('total_sgst',this.restoObj.sgst);
+      formData.append('payment_type',"Card Payment");
+      formData.append('delivery_address',JSON.stringify(this.deliveryaddress));
+      formData.append('order_type',"takeout");
+      formData.append('charges',40);
+      formData.append('total', this.totalamount);
+      formData.append('suggestedchange',suggestedText)
+      formData.append('transaction_id',stripeToken.id);
+      formData.append('easepayid','');
+      formData.append('discount_amount',0);
+      formData.append('coupon','');
+      formData.append('Pickup',this.pickUpdetails);
+      formData.append('order_date', this.deliverydate);
+      formData.append('order_time', this.deliverytime);
+      this.restaurantservice.saveorder(formData).subscribe((res:any)=>{
+        if(res['message'] == 'Order Saved.'){
+          alert("success!");
+        } else {
+          alert("fails!");
+        }
+      })
+    }
   invokeStripe() {
     if(!window.document.getElementById('stripe-script')) {
       const script = window.document.createElement("script");
